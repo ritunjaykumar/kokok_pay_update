@@ -1,0 +1,71 @@
+{
+  "@@locale": "lo",
+  "loading": "लोड हो रहा है ..",
+  "mobileNumber": "मोबाइल नंबर",
+  "password": "पासवर्ड",
+  "networkErrorTitle": "ເຄືອຂ່າຍຜິດພາດ",
+  "networkErrorBody": "ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດ! ແລະລອງອີກຄັ້ງ",
+  "pleaseWait": "ກະ\u200Bລຸ\u200Bນາ\u200Bລໍ\u200Bຖ້າ",
+  "somethingWentWrong": "ມີບາງຢ່າງຜິດພາດ",
+  "alert": "ເຕືອນ",
+  "close": "ໃກ້",
+  "information": "ຂໍ້ມູນ",
+  "retry": "ລອງໃຫມ່",
+  "pleaseEnterMobileNumber": "कृपया मोबाइल नंबर दर्ज करें",
+  "pleaseEnterValidMobileNumber": "कृपया वैध मोबाइल नंबर दर्ज करें",
+  "passwordInputError": "पासवर्ड में कम से कम संख्या, अक्षर और विशेष प्रतीक होना चाहिए",
+  "login": "लॉग इन करें",
+  "dontHaveAccount": "खाता नहीं है",
+  "forgotPassword": "पासवर्ड भूल गए? यहां क्लिक करें",
+  "enterYourPinToLogin": "लॉगिन करने के लिए अपना पिन दर्ज करें",
+  "mobileNumberVerification": "मोबाइल नंबर सत्यापन",
+  "getOtp": "ओटीपी प्राप्त करें",
+  "haveAccountSignin": "खाता है, साइन इन करें",
+  "userRegistration": "उपयोगकर्ता का पंजीकरण",
+  "otp": "ओटीपी",
+  "resend": "पुन: भेजें",
+  "verifyOtp": "ओटीपी सत्यापित करें",
+  "pleaseEnterValidOtp": "कृपया मान्य ओटीपी दर्ज करें",
+  "userDetails": "उपयोगकर्ता की जानकारी",
+  "firstName": "पहला नाम",
+  "enterFirstName": "पहला नाम दर्ज करें",
+  "lastName": "उपनाम",
+  "enterLastName": "अंतिम नाम दर्ज करो",
+  "emailId": "ईमेल आईडी",
+  "enterEmailId": "ईमेल आईडी दर्ज करें",
+  "dob": "जन्म तिथि",
+  "gender": "लिंग",
+  "male": "पुरुष",
+  "female": "महिला",
+  "mpinMustDigits": "एमपिन {digit} अंकों का होना चाहिए",
+  "@mpinMustDigits": {
+    "placeholders": {
+      "description": "this is for mpin input",
+      "digit": {
+        "type": "int"
+      }
+    }
+  },
+  "mpinMustEqual": "एमपिन बराबर होना चाहिए",
+  "dashboard": "डैशबोर्ड",
+  "account": "अकाउंट",
+  "profiles": "प्रोफाइल",
+  "transaction": "ट्रांसक्शन",
+  "generateQr": "क्यूआर जेनेरेट",
+  "offers": "ऑफर",
+  "qrPay": "क्यूआर पे",
+  "share": "शेयर",
+  "statement": "स्टेटमेंट",
+  "settings": "सेटिंग्स",
+  "appLanguageTitle": "एप्प भाषा",
+  "totalBalance": "कुल बैलेंस",
+  "transfer": "ट्रांसफर",
+  "appLanguage": "{locale, select, lo {हिन्दी} en {English} other {Default}}",
+  "@appLanguage": {
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  }
+}

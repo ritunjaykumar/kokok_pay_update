@@ -1,0 +1,91 @@
+ICU Name                   Skeleton
+ --------                   --------
+ DAY                          d
+ ABBR_WEEKDAY                 E
+ WEEKDAY                      EEEE
+ ABBR_STANDALONE_MONTH        LLL
+ STANDALONE_MONTH             LLLL
+ NUM_MONTH                    M
+ NUM_MONTH_DAY                Md
+ NUM_MONTH_WEEKDAY_DAY        MEd
+ ABBR_MONTH                   MMM
+ ABBR_MONTH_DAY               MMMd
+ ABBR_MONTH_WEEKDAY_DAY       MMMEd
+ MONTH                        MMMM
+ MONTH_DAY                    MMMMd
+ MONTH_WEEKDAY_DAY            MMMMEEEEd
+ ABBR_QUARTER                 QQQ
+ QUARTER                      QQQQ
+ YEAR                         y
+ YEAR_NUM_MONTH               yM
+ YEAR_NUM_MONTH_DAY           yMd
+ YEAR_NUM_MONTH_WEEKDAY_DAY   yMEd
+ YEAR_ABBR_MONTH              yMMM
+ YEAR_ABBR_MONTH_DAY          yMMMd
+ YEAR_ABBR_MONTH_WEEKDAY_DAY  yMMMEd
+ YEAR_MONTH                   yMMMM
+ YEAR_MONTH_DAY               yMMMMd
+ YEAR_MONTH_WEEKDAY_DAY       yMMMMEEEEd
+ YEAR_ABBR_QUARTER            yQQQ
+ YEAR_QUARTER                 yQQQQ
+ HOUR24                       H
+ HOUR24_MINUTE                Hm
+ HOUR24_MINUTE_SECOND         Hms
+ HOUR                         j
+ HOUR_MINUTE                  jm
+ HOUR_MINUTE_SECOND           jms
+ HOUR_MINUTE_GENERIC_TZ       jmv   (not yet implemented)
+ HOUR_MINUTE_TZ               jmz   (not yet implemented)
+ HOUR_GENERIC_TZ              jv    (not yet implemented)
+ HOUR_TZ                      jz    (not yet implemented)
+ MINUTE                       m
+ MINUTE_SECOND                ms
+ SECOND                       s
+
+ ==============================================
+
+ Pattern                           Result
+  ----------------                  -------
+  DateFormat.yMd()                 -> 7/10/1996
+  DateFormat('yMd')                -> 7/10/1996
+  DateFormat.yMMMMd('en_US')       -> July 10, 1996
+  DateFormat.jm()                  -> 5:08 PM
+  DateFormat.yMd().add_jm()        -> 7/10/1996 5:08 PM
+  DateFormat.Hm()                  -> 17:08 // force 24 hour time
+
+
+  ====================================================
+
+  Symbol   Meaning                Presentation       Example
+  ------   -------                ------------       -------
+  G        era designator         (Text)             AD
+  y        year                   (Number)           1996
+  M        month in year          (Text & Number)    July & 07
+  L        standalone month       (Text & Number)    July & 07
+  d        day in month           (Number)           10
+  c        standalone day         (Number)           10
+  h        hour in am/pm (1~12)   (Number)           12
+  H        hour in day (0~23)     (Number)           0
+  m        minute in hour         (Number)           30
+  s        second in minute       (Number)           55
+  S        fractional second      (Number)           978
+  E        day of week            (Text)             Tuesday
+  D        day in year            (Number)           189
+  a        am/pm marker           (Text)             PM
+  k        hour in day (1~24)     (Number)           24
+  K        hour in am/pm (0~11)   (Number)           0
+  Q        quarter                (Text)             Q3
+  '        escape for text        (Delimiter)        'Date='
+  ''       single quote           (Literal)          'o''clock'
+
+
+  =======================================================================
+
+
+  The following characters are reserved and currently are unimplemented:
+
+  Symbol   Meaning                Presentation       Example
+  ------   -------                ------------       -------
+  z        time zone              (Text)             Pacific Standard Time
+  Z        time zone (RFC 822)    (Number)           -0800
+  v        time zone (generic)    (Text)             Pacific Time

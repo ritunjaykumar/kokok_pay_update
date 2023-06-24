@@ -1,0 +1,8 @@
+arb-dir: assets/l10n
+template-arb-file: intl_en.arb
+output-localization-file: app_localizations.dart
+
+# Other config... by default, it will generate in synthetic package (.dart_tool)
+# below config will decide the manual out dir
+#synthetic-package: false
+#output-dir: lib/l10n

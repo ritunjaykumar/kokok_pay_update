@@ -1,0 +1,62 @@
+//latest offers
+/*class _LatestOffersHeading extends StatelessWidget {
+  const _LatestOffersHeading({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: SizeResource.value_12,
+        vertical: SizeResource.value_12,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.local_offer),
+              Text(
+                'Latest Offers',
+                style: theme.textTheme.titleMedium,
+              ),
+            ],
+          ),
+          Consumer<HomeProvider>(
+            builder: (_, homeProvider, child) {
+              return TextButton(
+                onPressed: () {},
+                child: const Text('View All'),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LatestOfferWidget extends StatelessWidget {
+  const _LatestOfferWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<HomeProvider>(
+      builder: (_, homeProvider, child) {
+        return homeProvider.list.isEmpty
+            ? child!
+            : ListView.builder(
+                itemCount: homeProvider.list.length,
+                itemBuilder: (ctx, i) {
+                  return ListTile(
+                    title: Text(homeProvider.list[i]),
+                  );
+                },
+              );
+      },
+      child: const Center(
+        child: Text('No Offers are available'),
+      ),
+    );
+  }
+}*/

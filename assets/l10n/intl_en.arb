@@ -1,0 +1,70 @@
+{
+  "@@locale": "en",
+  "loading":"Loading ..",
+  "mobileNumber" : "Mobile Number",
+  "password" : "Password",
+  "pleaseEnterMobileNumber" :"please enter mobile number",
+  "pleaseEnterValidMobileNumber" :"please enter valid mobile number",
+  "passwordInputError": "password should contains at least number, letter and special symbol",
+  "login" : "Login",
+  "networkErrorTitle": "Network Error",
+  "networkErrorBody": "Please check the internet connection! and try again",
+  "pleaseWait": "Please wait",
+  "somethingWentWrong": "something went wrong",
+  "alert": "Alert",
+  "close": "Close",
+  "information": "Information",
+  "retry": "Retry",
+  "dontHaveAccount": "Don't have account",
+  "forgotPassword":"Forgot password? click here",
+  "enterYourPinToLogin":"Enter your pin to login",
+  "mobileNumberVerification": "Mobile number verification",
+  "getOtp":"Get Otp",
+  "haveAccountSignin":"Have Account, Sign In",
+  "userRegistration":"User Registration",
+  "otp":"mobile otp",
+  "resend":"Resend",
+  "verifyOtp":"Verify Otp",
+  "pleaseEnterValidOtp":"please enter valid otp",
+  "userDetails": "UserDetails",
+  "firstName":"First Name",
+  "enterFirstName":"Enter first name",
+  "lastName":"Last Name",
+  "enterLastName":"Enter last name",
+  "emailId": "Email id",
+  "enterEmailId": "enter email id",
+  "dob":"Date of birth",
+  "gender":"Gender",
+  "male":"Male",
+  "female":"Female",
+  "mpinMustDigits": "mpin must be {digit} digits",
+  "@mpinMustDigits":{
+    "placeholders": {
+      "digit": {
+        "type": "int"
+      }
+    }
+  },
+  "mpinMustEqual":"mpin must be equals",
+  "dashboard":"Dashboard",
+  "account":"Account",
+  "profiles":"Profiles",
+  "transaction":"Transaction",
+  "generateQr":"Generate QR",
+  "offers":"Offers",
+  "qrPay":"QR Pay",
+  "share":"Share",
+  "statement":"Statement",
+  "settings":"Settings",
+  "appLanguage": "{locale, select, lo {हिन्दी} en {English} other {Default}}",
+  "@appLanguage": {
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  },
+  "appLanguageTitle":"App Language",
+  "totalBalance":"Total Balance",
+  "transfer":"Transfer"
+}

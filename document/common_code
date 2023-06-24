@@ -1,0 +1,3 @@
+WidgetsBinding.instance.addPostFrameCallback((_) async {
+      context.read<ForgotPinProvider>().sendOtp();
+    });

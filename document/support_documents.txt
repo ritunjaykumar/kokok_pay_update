@@ -1,0 +1,52 @@
+flutter channel master:  change the channel
+
+for image assets
+An image asset can refer to one or more resolution-specific "variants", see
+.../my_icon.png       (mdpi baseline)
+.../1.5x/my_icon.png  (hdpi)
+.../2.0x/my_icon.png  (xhdpi)
+.../3.0x/my_icon.png  (xxhdpi)
+.../4.0x/my_icon.png  (xxxhdpi)
+
+
+
+//assets for dark and light
+.../pubspec.yaml
+.../graphics/my_icon.png
+.../graphics/background.png
+.../graphics/dark/background.png
+...etc.
+
+> Then both graphics/background.png and graphics/dark/background.png are included in your
+    asset bundle. The former is considered the main asset, while the latter is considered a variant.
+
+
+> native splash screen
+    https://docs.flutter.dev/development/platform-integration/android/splash-screen-migration
+    https://docs.flutter.dev/development/ui/advanced/splash-screen
+    https://github.com/flutter/samples/tree/main/android_splash_screen : sample app
+> large screen
+    https://m3.material.io/develop/flutter
+> ssl pining
+     the format of certificate must be PEM or PKCS12
+      /// Add a certificate to the set of trusted X509 certificates
+       /// used by [SecureSocket] client connections.
+       ///
+       /// [file] is the path to a PEM or PKCS12 file containing X509 certificates,
+       /// usually root certificates from certificate authorities. For PKCS12 files,
+       /// [password] is the password for the file. For PEM files, [password] is
+       /// ignored. Assuming it is well-formatted, all other contents of [file] are
+       /// ignored.
+       ///
+       /// NB: This function calls [File.readAsBytesSync], and will block on file IO.
+       /// Prefer using [setTrustedCertificatesBytes].
+       ///
+       /// iOS note: On iOS, this call takes only the bytes for a single DER
+       /// encoded X509 certificate. It may be called multiple times to add
+       /// multiple trusted certificates to the context. A DER encoded certificate
+       /// can be obtained from a PEM encoded certificate by using the openssl tool:
+       /// ```bash
+       /// $ openssl x509 -outform der -in cert.pem -out cert.der
+
+> build the model class
+    flutter pub run build_runner build --delete-conflicting-outputs
