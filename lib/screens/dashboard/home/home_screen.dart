@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
+import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/dashboard/home/home_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -88,21 +89,23 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // const SizedBox(height: 20),
-          Text(
-            'Hello',
-            style: textTheme.bodyLarge?.copyWith(
-              color: colorScheme.onPrimary,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              'Mr. Inpone',
-              style: textTheme.titleMedium?.copyWith(
-                color: colorScheme.onPrimary,
-                fontWeight: FontWeight.bold,
+          Row(
+            children: [
+              Text(
+                'Hello',
+                style: textTheme.bodyLarge?.copyWith(
+                  color: colorScheme.onPrimary,
+                ),
               ),
-            ),
+              const SizedBox(width: 10),
+              Text(
+                'Mr. Inpone',
+                style: textTheme.titleMedium?.copyWith(
+                  color: colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
           // Text(
           //   'Available Balance',
@@ -146,7 +149,9 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
             children: [
               Expanded(
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Routes.qrScreen);
+                  },
                   label: const Text('My Qr'),
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(colorScheme.primaryContainer),
@@ -220,35 +225,41 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
           Expanded(
             child: Consumer<HomeProvider>(
               builder: (ctx, homeProvider, child) {
+                var length = homeProvider.transactionData.length;
                 return ListView.builder(
-                  itemCount: homeProvider.transactionData.length,
+                  //I added 1 for extra space in bottom
+                  itemCount: length,
                   itemBuilder: (ctx, i) {
                     TransactionData transactionData = homeProvider.transactionData[i];
-                    return ListTile(
-                      minVerticalPadding: 0,
-                      title: Text(transactionData.to),
-                      subtitle: Text(
-                        '${transactionData.cur} ${transactionData.amount}',
-                        style: textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      leading: _getStatusIndicator(transactionData.type),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(transactionData.date),
-                          Text(
-                            transactionData.type,
-                            style: textTheme.bodyMedium?.copyWith(
-                              color: _getColor(transactionData.type),
-                              fontWeight: FontWeight.bold,
-                            ),
+                    if(length == i+1){
+                      return const ListTile();
+                    }else {
+                      return ListTile(
+                        minVerticalPadding: 0,
+                        title: Text(transactionData.to),
+                        subtitle: Text(
+                          '${transactionData.cur} ${transactionData.amount}',
+                          style: textTheme.bodySmall?.copyWith(
+                            fontWeight: FontWeight.bold,
                           ),
-                        ],
-                      ),
-                    );
+                        ),
+                        leading: _getStatusIndicator(transactionData.type),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(transactionData.date),
+                            Text(
+                              transactionData.type,
+                              style: textTheme.bodyMedium?.copyWith(
+                                color: _getColor(transactionData.type),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                   },
                   // separatorBuilder: (BuildContext context, int index) {
                   //   return const Padding(

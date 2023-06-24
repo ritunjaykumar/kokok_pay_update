@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:kokok_pay/screens/dashboard/dashboard_screen.dart';
+import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../service/provider/notification_provider.dart';

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
+import 'package:kokok_pay/screens/qr_screen/qr_screen.dart';
 
-import '../example/user_details_screen.dart';
-import '../screens/qr/qr_screen/qr_amount_screen.dart';
 import '/screens/account/forgot_pin/forgot_pin_screen.dart';
 import '/screens/account/login/login_screen.dart';
 import '/screens/before/policy/policy_screen.dart';
 import '/screens/before/start/start_screen.dart';
 import '/screens/unknown/unknown_screen.dart';
+import '../example/user_details_screen.dart';
 import '../screens/account/device_register/device_register_screen.dart';
 import '../screens/account/pin_register/pin_register_screen.dart';
 import '../screens/account/user_register/confirmation_user_register_screen.dart';
@@ -34,7 +33,6 @@ class Routes {
   static const String qrScreen = 'qrScreen';
   static const String qrAmountScreen = 'qrAmountScreen';
   static const String userDetailsScreen = 'UserDetailsScreen';
-
 }
 
 class RouteResource {
@@ -78,7 +76,6 @@ class RouteResource {
       Routes.userRegisterScreen: (_) => const UserRegisterScreen(),
       Routes.confirmUserRegisterScreen: (_) => const ConfirmationUserRegisterScreen(),
       Routes.pinRegisterScreen: (_) => const PinRegisterScreen(),
-      Routes.qrAmountScreen: (_) => const QrAmountScreen(),
       Routes.userDetailsScreen: (_) => const UserDetailsScreen(),
     };
   }

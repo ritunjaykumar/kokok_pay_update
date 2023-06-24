@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kokok_pay/screens/base/base_view_model.dart';
 import 'package:kokok_pay/screens/dashboard/home/home_screen.dart';
 import 'package:kokok_pay/screens/dashboard/message/message_screen.dart';
+import 'package:kokok_pay/screens/dashboard/more/more_screen.dart';
 import 'package:kokok_pay/screens/dashboard/profile/profile_screen.dart';
 import 'package:kokok_pay/screens/dashboard/setting/setting_screen.dart';
 import 'package:kokok_pay/screens/widgets/menu/bottom_navigation.dart';
@@ -10,6 +11,7 @@ class DashboardProvider extends BaseViewModel {
   DashboardProvider(super.context);
 
   int _currentIndex = 0;
+  int _previousSelectedIndex = 0;
   final List<ItemData> _menuItem = [];
   late Widget _screen;
   late String _title;
@@ -67,6 +69,9 @@ class DashboardProvider extends BaseViewModel {
   }
 
   void _menuScreen() {
+    if (_currentIndex != 4) {
+      _previousSelectedIndex = _currentIndex;
+    }
     switch (_currentIndex) {
       case 0:
         _screen = const HomeScreen();
@@ -81,11 +86,42 @@ class DashboardProvider extends BaseViewModel {
         _screen = const SettingScreen();
         break;
       case 4:
-        _screen = const HomeScreen();
+        _showMoreDialog();
         break;
     }
   }
 
+  void _showMoreDialog() async {
+    await showGeneralDialog(
+      context: context,
+      barrierLabel: 'more label',
+      transitionDuration: const Duration(milliseconds: 500),
+      pageBuilder: (ctx, anim1, anim2) {
+        return const Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          ),
+          insetPadding: EdgeInsets.zero,
+          alignment: Alignment.bottomCenter,
+          child: MoreScreen(),
+        );
+      },
+      transitionBuilder: (ctx, anim1, anim2, child) {
+        return SlideTransition(
+          position: Tween(
+            begin: const Offset(0, 1),
+            end: const Offset(0, 0),
+          ).animate(anim1),
+          child: child,
+        );
+      },
+    );
+    _currentIndex = _previousSelectedIndex;
+    notifyListeners();
+  }
 
   String get title => _title;
 

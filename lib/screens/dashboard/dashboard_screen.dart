@@ -42,8 +42,12 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
           },
         ),
         centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
+        leading: Container(
+          margin: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all()
+          ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
