@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kokok_pay/screens/qr_screen/qr_screen.dart';
+import 'package:kokok_pay/screens/qr/qr_screen/qr_amount_screen.dart';
+import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 
 import '/screens/account/forgot_pin/forgot_pin_screen.dart';
 import '/screens/account/login/login_screen.dart';
@@ -63,6 +64,8 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const ForgotPinScreen());
       case Routes.qrScreen:
         return MaterialPageRoute(builder: (_) => const QrScreen());
+      case Routes.qrAmountScreen:
+        return MaterialPageRoute(builder: (_) => const QrAmountScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }

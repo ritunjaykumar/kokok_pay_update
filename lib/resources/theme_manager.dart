@@ -40,9 +40,14 @@ class ThemeResources {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: ColorResource.lightSecondary,
+          backgroundColor: ColorResource.lightPrimary,
           textStyle: StyleResource.textTheme.titleMedium,
           foregroundColor: ColorResource.white,
+        ),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: ColorResource.lightPrimary,
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme().copyWith(
