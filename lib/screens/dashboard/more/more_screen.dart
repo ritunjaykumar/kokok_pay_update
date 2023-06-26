@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kokok_pay/screens/dashboard/more/more_provider.dart';
+import 'package:kokok_pay/screens/widgets/widget/widgets.dart';
 import 'package:provider/provider.dart';
 
 class MoreScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class _MoreScreenMainState extends State<_MoreScreenMain> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
+          /*Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
             ),
@@ -78,6 +79,13 @@ class _MoreScreenMainState extends State<_MoreScreenMain> {
                 )
               ],
             ),
+          )*/
+          DialogAppbar(
+            title: 'More',
+            icon: Icons.close,
+            callback: () {
+              Navigator.of(context).pop();
+            },
           ),
           Text('hello'),
           Text('world'),

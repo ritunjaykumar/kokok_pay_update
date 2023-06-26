@@ -110,8 +110,8 @@ Future<void> registeringDeviceInfo() async {
     productName = androidInfo.product;
   } else {
     IosDeviceInfo iosDeviceInfo = await deviceInfoPlugin.iosInfo;
-    osVersion = iosDeviceInfo.utsname.release!;
-    productName = iosDeviceInfo.utsname.nodename!;
+    osVersion = iosDeviceInfo.utsname.release;
+    productName = iosDeviceInfo.utsname.nodename;
   }
 
   DeviceInfo deviceInfo = DeviceInfo(platformType, udid, osVersion, productName);

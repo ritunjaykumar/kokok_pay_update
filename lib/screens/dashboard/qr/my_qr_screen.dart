@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kokok_pay/models/model/model_resp.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/screens/dashboard/qr/my_qr_provider.dart';
+import 'package:kokok_pay/screens/widgets/widget/widgets.dart';
 import 'package:kokok_pay/utils/methods/support_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -38,12 +40,16 @@ class _MessageScreenMainState extends State<_MessageScreenMain> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    return Column(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _getQrWidget(),
-        _getOptionWidget(),
-      ],
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _getQrWidget(),
+          _getOptionWidget(),
+          _getSelectedBank(),
+        ],
+      ),
     );
   }
 
@@ -139,9 +145,7 @@ class _MessageScreenMainState extends State<_MessageScreenMain> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            onPressed: () {
-              context.read<MyQrProvider>().saveImage(_repaintKey);
-            },
+            onPressed: context.read<MyQrProvider>().showBankListBottomSheet,
             icon: const Icon(Icons.account_balance),
           ),
           IconButton(
@@ -164,6 +168,33 @@ class _MessageScreenMainState extends State<_MessageScreenMain> {
       ),
     );
   }
+
+  Widget _getSelectedBank() {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return Consumer<MyQrProvider>(
+      builder: (ctx, myQrProvider, child) {
+        return myQrProvider.bankDataResp == null
+            ? child!
+            : Container(
+                margin: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  color: colorScheme.onPrimary,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ListTile(
+                  title: const Text('Selected Bank'),
+                  subtitle: Text(myQrProvider.bankDataResp!.name),
+                  leading: const CircleAvatar(
+                    foregroundImage: AssetImage(ImagesFile.bankLogo),
+                    radius: 18,
+                  ),
+                ),
+              );
+      },
+      child: Container(),
+    );
+  }
 }
 
 //////////for enter amount widget
@@ -182,54 +213,137 @@ class _DynamicQrEditorState extends State<DynamicQrEditor> {
 
   void _onFormSubmit() {
     _formKey.currentState!.save();
-    // Navigator.of(context).pop({'amount': amount, 'description': description});
+    Navigator.of(context).pop({'amount': amount, 'description': description});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Text('Enter Amount (LAK)'),
-          const SizedBox(height: 8),
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Please Enter Amount'),
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.next,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            onTapOutside: (event) {
-              SupportMethods.closeKeyboard();
-            },
-            onSaved: (amount) {
-              this.amount = double.parse(amount!);
-            },
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DialogAppbar(
+          title: 'Generate Qr with Amount',
+          icon: Icons.close,
+          callback: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: 12,
+            left: 12,
+            right: 12,
+            bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          const SizedBox(height: 12),
-          const Text('Description'),
-          const SizedBox(height: 8),
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Please Enter Description',
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Enter Amount'),
+                const SizedBox(height: 8),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: 'Please Enter Amount',
+                    prefix: Padding(
+                      padding: EdgeInsets.only(right: 4),
+                      child: Text('LAK'),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  onTapOutside: (event) {
+                    SupportMethods.closeKeyboard();
+                  },
+                  onSaved: (amount) {
+                    this.amount = double.parse(amount!);
+                  },
+                  validator: (amount) {
+                    if (amount == null) return null;
+                    try {
+                      double.parse(amount);
+                    } catch (error) {
+                      return 'invalid amount format';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 12),
+                const Text('Description'),
+                const SizedBox(height: 8),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: 'Please Enter Description',
+                  ),
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.done,
+                  onSaved: (description) {
+                    this.description = description!;
+                  },
+                  onFieldSubmitted: (description) {
+                    _onFormSubmit();
+                  },
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _onFormSubmit,
+                    child: const Text('Generate QR'),
+                  ),
+                ),
+              ],
             ),
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.done,
-            onSaved: (description) {
-              this.description = description!;
-            },
-            onFieldSubmitted: (description) {
-              _onFormSubmit();
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//////
+class SelectBankWidget extends StatelessWidget {
+  const SelectBankWidget({super.key, required this.bankList});
+
+  final List<BankDataResp> bankList;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 400,
+      child: Column(
+        children: [
+          DialogAppbar(
+            title: 'Select Bank',
+            icon: Icons.close,
+            callback: () {
+              Navigator.of(context).pop();
             },
           ),
-          const SizedBox(height: 12),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: _onFormSubmit,
-              child: const Text('Generate QR'),
+          Expanded(
+            child: ListView.builder(
+              itemCount: bankList.length,
+              itemBuilder: (ctx, i) {
+                final bankData = bankList[i];
+                return ListTile(
+                  leading: const CircleAvatar(foregroundImage: AssetImage(ImagesFile.bankLogo)),
+                  title: Text(bankData.name),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  trailing: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(bankData);
+                    },
+                    child: const Text('Select'),
+                  ),
+                );
+              },
             ),
           ),
         ],
