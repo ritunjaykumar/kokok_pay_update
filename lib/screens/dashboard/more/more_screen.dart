@@ -39,47 +39,6 @@ class _MoreScreenMainState extends State<_MoreScreenMain> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          /*Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-            ),
-            width: double.infinity,
-            height: 52,
-            decoration: BoxDecoration(
-              color: colorScheme.primary,
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(12),
-                topLeft: Radius.circular(12),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'More',
-                  style: textTheme.titleMedium?.copyWith(
-                    color: colorScheme.onPrimary,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: colorScheme.onPrimary,
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: Icon(
-                      Icons.close,
-                      color: colorScheme.primary,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )*/
           DialogAppbar(
             title: 'More',
             icon: Icons.close,

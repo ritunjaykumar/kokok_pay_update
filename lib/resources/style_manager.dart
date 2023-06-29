@@ -74,7 +74,7 @@ class StyleResource {
     ),
     titleLarge: TextStyle(
       debugLabel: 'englishLike titleLarge 2021',
-      inherit: false,
+      inherit: true,
       fontSize: SizeResource.value_22,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.0,
@@ -115,7 +115,7 @@ class StyleResource {
       height: 1.43,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     labelMedium: TextStyle(
       debugLabel: 'englishLike labelMedium 2021',
@@ -126,7 +126,7 @@ class StyleResource {
       height: 1.33,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     labelSmall: TextStyle(
       debugLabel: 'englishLike labelSmall 2021',
@@ -137,7 +137,7 @@ class StyleResource {
       height: 1.45,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     bodyLarge: TextStyle(
       debugLabel: 'englishLike bodyLarge 2021',
@@ -148,7 +148,7 @@ class StyleResource {
       height: 1.50,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     bodyMedium: TextStyle(
       debugLabel: 'englishLike bodyMedium 2021',
@@ -159,7 +159,7 @@ class StyleResource {
       height: 1.43,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     bodySmall: TextStyle(
       debugLabel: 'englishLike bodySmall 2021',
@@ -170,7 +170,7 @@ class StyleResource {
       height: 1.33,
       textBaseline: TextBaseline.alphabetic,
       leadingDistribution: TextLeadingDistribution.even,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     //deprecated
     /* headline1: const TextStyle().copyWith(
@@ -222,31 +222,31 @@ class StyleResource {
       fontSize: SizeResource.value_16,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.5,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     bodyText2: const TextStyle().copyWith(
       fontSize: SizeResource.value_14,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.25,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     button: const TextStyle().copyWith(
       fontSize: SizeResource.value_14,
       fontWeight: FontWeight.w500,
       letterSpacing: 1.25,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     caption: const TextStyle().copyWith(
       fontSize: SizeResource.value_12,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.4,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),
     overline: const TextStyle().copyWith(
       fontSize: SizeResource.value_10,
       fontWeight: FontWeight.w400,
       letterSpacing: 1.5,
-      fontFamily: FontFamily.montserrat.fontName,
+      fontFamily: FontFamily.mukta.fontName,
     ),*/
   );
 

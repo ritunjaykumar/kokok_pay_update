@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:kokok_pay/screens/dashboard/setting/setting_provider.dart';
+import 'package:kokok_pay/screens/painter/setting_painter.dart';
 import 'package:provider/provider.dart';
-
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -20,6 +19,7 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 }
+
 ///
 class _SettingScreenMain extends StatefulWidget {
   const _SettingScreenMain({Key? key}) : super(key: key);
@@ -31,10 +31,20 @@ class _SettingScreenMain extends StatefulWidget {
 class _SettingScreenMainState extends State<_SettingScreenMain> {
   @override
   Widget build(BuildContext context) {
-  final theme = Theme.of(context);
+    final theme = Theme.of(context);
     return Column(
       children: [
-        Text('setting screen')
+        Stack(
+          children: [
+            CustomPaint(
+              painter: SettingPainter(),
+              child: const SizedBox(
+                width: double.infinity,
+                height: 150,
+              ),
+            )
+          ],
+        )
       ],
     );
   }

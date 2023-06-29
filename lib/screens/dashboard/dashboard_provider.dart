@@ -9,7 +9,8 @@ import 'package:kokok_pay/screens/widgets/menu/bottom_navigation.dart';
 
 class DashboardProvider extends BaseViewModel {
   DashboardProvider(super.context);
-  final List<String> titles = ['Home', 'My QR','My Profile','Setting'];
+
+  final List<String> titles = ['Home', 'My QR', 'My Profile', 'Setting'];
   int _currentIndex = 0;
   int _previousSelectedIndex = 0;
   final List<ItemData> _menuItem = [];

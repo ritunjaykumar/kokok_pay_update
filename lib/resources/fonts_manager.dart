@@ -1,9 +1,11 @@
 const String _montserratFont = 'Montserrat';
 const String _openSans = 'OpenSans';
+const String _mukta = 'Mukta';
 
 enum FontFamily {
   montserrat(_montserratFont),
-  opensans(_openSans);
+  opensans(_openSans),
+  mukta(_mukta);
 
   const FontFamily(this.fontName);
 
