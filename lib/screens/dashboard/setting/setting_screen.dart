@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/screens/dashboard/setting/setting_provider.dart';
 import 'package:kokok_pay/screens/painter/setting_painter.dart';
 import 'package:provider/provider.dart';
@@ -31,16 +32,29 @@ class _SettingScreenMain extends StatefulWidget {
 class _SettingScreenMainState extends State<_SettingScreenMain> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
         Stack(
           children: [
             CustomPaint(
-              painter: SettingPainter(),
-              child: const SizedBox(
+              painter: SettingPainter(color: colorScheme.primary),
+              child:  Container(
                 width: double.infinity,
+                color: Colors.red,
                 height: 150,
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(32),
+                child: Image.asset(
+                  ImagesFile.myPic,
+                  width: 60,
+                  height: 60,
+                ),
               ),
             )
           ],
