@@ -15,7 +15,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SettingProvider>(
-      create: (ctx) => SettingProvider(context),
+      create: (ctx) => SettingProvider(context)..init(),
       child: const _SettingScreenMain(),
     );
   }
@@ -81,25 +81,17 @@ class _SettingScreenMainState extends State<_SettingScreenMain> {
           child: Card(
             elevation: 1,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 8,
+              ),
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    _getSettingChild(
-                        'Profile', 'see and update your profile details', Icons.person),
-                    _getSettingChild('Security Pin', 'change your login pin', Icons.security),
-                    _getSettingChild(
-                        'Biometry Login', 'Change your biometric preferences', Icons.fingerprint),
-                    _getSettingChild(
-                        'E-KYC', 'update your E-kyc', Icons.verified_user_outlined, true),
-                    _getSettingChild('Logout', 'Logout your KokKok pay', Icons.logout),
-                    _getSettingChild('Share App', 'share with your friends', Icons.share),
-                    _getSettingChild(
-                        'Clear Data', 'clear all cached data', Icons.cleaning_services_rounded),
-                    _getSettingChild('1.1.0', 'app version', Icons.info_outline),
-                    _getSettingChild('Delete Account', 'suspended your account',
-                        Icons.delete_forever, false, Colors.red),
-                  ],
+                  children: context
+                      .read<SettingProvider>()
+                      .settingDataList
+                      .map((settingData) => _getSettingChild(settingData))
+                      .toList(),
                 ),
               ),
             ),
@@ -109,28 +101,27 @@ class _SettingScreenMainState extends State<_SettingScreenMain> {
     );
   }
 
-  Widget _getSettingChild(String title, String subTitle, IconData icon,
-      [bool verify = false, Color? color]) {
+  Widget _getSettingChild(SettingData settingData) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
     return SizedBox(
       height: 60,
       child: ListTile(
-        title: Text(title),
-        subtitle: Text(subTitle),
+        title: Text(settingData.title),
+        subtitle: Text(settingData.subTitle),
         titleTextStyle: textTheme.titleSmall!.copyWith(
           fontWeight: FontWeight.bold,
-          color: color,
+          color: settingData.color,
         ),
         subtitleTextStyle: textTheme.bodyMedium,
         leading: CircleAvatar(
           backgroundColor: colorScheme.primary,
           radius: 18,
-          child: Icon(icon, color: colorScheme.onPrimary, size: 22),
+          child: Icon(settingData.icon, color: colorScheme.onPrimary, size: 22),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-        trailing: verify
+        trailing: settingData.verify
             ? const Icon(
                 Icons.check_circle,
                 color: Colors.green,

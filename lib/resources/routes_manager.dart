@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_amount_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
+import 'package:kokok_pay/screens/wallet/wallet_screen.dart';
 
 import '/screens/account/forgot_pin/forgot_pin_screen.dart';
 import '/screens/account/login/login_screen.dart';
@@ -33,7 +34,8 @@ class Routes {
   static const String forgotPin = 'forgotPin';
   static const String qrScreen = 'qrScreen';
   static const String qrAmountScreen = 'qrAmountScreen';
-  static const String userDetailsScreen = 'UserDetailsScreen';
+  static const String userDetailsScreen = 'userDetailsScreen';
+  static const String walletScreen = 'walletScreen';
 }
 
 class RouteResource {
@@ -66,6 +68,8 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const QrScreen());
       case Routes.qrAmountScreen:
         return MaterialPageRoute(builder: (_) => const QrAmountScreen());
+      case Routes.walletScreen:
+        return MaterialPageRoute(builder: (_) => const WalletScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }

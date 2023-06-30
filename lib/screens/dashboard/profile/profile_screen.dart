@@ -199,7 +199,7 @@ class _ProfileScreenMainState extends State<_ProfileScreenMain> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Ritunjay Kumar',
+                  'Mr. Inpone',
                   style: textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

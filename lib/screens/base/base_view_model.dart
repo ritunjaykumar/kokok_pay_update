@@ -43,4 +43,8 @@ class BaseViewModel extends ChangeNotifier {
     }
     dialogUtil.showFailureDialog(context, failure);
   }
+
+  void init(){
+
+  }
 }
