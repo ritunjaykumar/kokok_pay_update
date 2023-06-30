@@ -44,10 +44,7 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
         centerTitle: true,
         leading: Container(
           margin: const EdgeInsets.all(8.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all()
-          ),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12), border: Border.all()),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
@@ -56,6 +53,23 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
             ),
           ),
         ),
+        actions:  [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Badge(
+              label: const Text('34'),
+              child: Container(
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: colorScheme.onPrimary,
+                ),
+                child: Icon(Icons.notifications_rounded, color: colorScheme.primary,),
+
+              ),
+            ),
+          )
+        ],
       ),
       body: Consumer<DashboardProvider>(
         builder: (ctx, dashboardProvider, child) {
