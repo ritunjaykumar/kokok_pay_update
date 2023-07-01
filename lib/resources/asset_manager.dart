@@ -5,6 +5,8 @@ const String _imageDir = 'assets/images/';
 class LottieFile {
   static const String progressLottie = '${_lottieDir}progress_lottie.json';
   static const String successLottie = '${_lottieDir}success_lottie.json';
+  static const String successLottie2 = '${_lottieDir}success_lottie_2.json';
+  static const String successLottie3 = '${_lottieDir}success_lottie_3.json';
   static const String failedLottie = '${_lottieDir}failed_lottie.json';
   static const String errorLottie = '${_lottieDir}error_lottie.json';
   static const String networkErrorLottie = '${_lottieDir}network_error_lottie.json';

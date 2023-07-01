@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kokok_pay/screens/card/card_screen.dart';
 import 'package:kokok_pay/screens/dashboard/dashboard_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_amount_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
+import 'package:kokok_pay/screens/result/result_screen.dart';
+import 'package:kokok_pay/screens/scanner/details/scanner_detail_screen.dart';
 import 'package:kokok_pay/screens/scanner/qr_scanner_screen.dart';
 import 'package:kokok_pay/screens/wallet/wallet_screen.dart';
 
@@ -40,6 +43,9 @@ class Routes {
   static const String walletScreen = 'walletScreen';
   static const String dashboardScreen = 'dashboardScreen';
   static const String qrScannerScreen = 'qrScannerScreen';
+  static const String scannerDetailScreen = 'scannerDetailScreen';
+  static const String resultScreen = 'resultScreen';
+  static const String cardScreen = 'cardScreen';
 }
 
 class RouteResource {
@@ -78,6 +84,12 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const DashboardScreen());
       case Routes.qrScannerScreen:
         return MaterialPageRoute(builder: (_) => const QrScannerScreen());
+      case Routes.scannerDetailScreen:
+        return MaterialPageRoute(builder: (_) => const ScannerDetailScreen());
+      case Routes.resultScreen:
+        return MaterialPageRoute(builder: (_) => const ResultScreen());
+      case Routes.cardScreen:
+        return MaterialPageRoute(builder: (_) => const CardScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }

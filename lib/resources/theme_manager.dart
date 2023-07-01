@@ -25,6 +25,9 @@ class ThemeResources {
         color: ColorResource.white,
         size: 24,
       ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: ColorResource.lightPrimary,
+      ),
       textTheme: StyleResource.textTheme,
       cardTheme: const CardTheme().copyWith(
         shape: RoundedRectangleBorder(

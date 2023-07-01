@@ -19,7 +19,7 @@ class MoreProvider extends BaseViewModel {
       MenuItemData(title: 'Favorite', icon: Icons.favorite_border, path: 'Routes.calenderScreen'),
       MenuItemData(title: 'EDl', icon: Icons.electric_bolt, path: 'Routes.calenderScreen'),
       MenuItemData(title: 'Support', icon: Icons.support_agent, path: 'Routes.calenderScreen'),
-      MenuItemData(title: 'My Cards', icon: Icons.credit_card, path: 'Routes.calenderScreen'),
+      MenuItemData(title: 'My Cards', icon: Icons.credit_card, path: Routes.cardScreen),
     ];
   }
 

@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/scanner/qr_scanner_provider.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:provider/provider.dart';
@@ -36,18 +40,23 @@ class _QrScannerScreenMainState extends State<_QrScannerScreenMain> {
 
   bool _doingProcess = true;
 
-  void _onQrDetect(BarcodeCapture? capture) {
+  void _onQrDetect(BarcodeCapture capture) {
     if (_doingProcess) {
-      _doingProcess = false;
-      if()
-
-
-      List<Map<String,dynamic>> rawData = capture!.raw;
-      print('raw data: $rawData');
-
-
-      _doingProcess = true;
+      final List<Barcode> barcodes = capture.barcodes;
+      // final Uint8List? image = capture.image;
+      if(barcodes.length == 1){
+        _doingProcess = false;
+        debugPrint('Barcode found! ${barcodes[0].rawValue}');
+        Navigator.of(context).pushReplacementNamed(Routes.scannerDetailScreen);
+      }
+      // _doingProcess = true;
     }
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _mobileScannerController.dispose();
+    print('close qr scanner');
   }
 
   @override
