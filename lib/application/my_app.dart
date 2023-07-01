@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
             routes: RouteResource.getStaticRoute(context),
             // initialRoute: Routes.homeScreen,
             // initialRoute: Routes.splashScreen,
-            home: const DashboardScreen(),
+            initialRoute: Routes.dashboardScreen,
             themeAnimationCurve: Curves.easeIn,
             themeAnimationDuration: const Duration(seconds: 1),
             onUnknownRoute: (RouteSettings routeSetting) {

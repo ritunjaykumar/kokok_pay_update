@@ -205,7 +205,7 @@ class _ProfileScreenMainState extends State<_ProfileScreenMain> {
                   ),
                 ),
                 Text(
-                  '+91 8083816290',
+                  '+91 2052592123',
                   style: textTheme.bodyLarge,
                 ),
               ],

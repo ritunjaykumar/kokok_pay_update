@@ -88,7 +88,7 @@ class _MessageScreenMainState extends State<_MessageScreenMain> {
                         ),
                       ),
                       Text(
-                        '+856 8083816290',
+                        '+856 2052592123',
                         style: textTheme.bodyLarge?.copyWith(
                           color: colorScheme.primary,
                         ),

@@ -29,8 +29,10 @@ class ImagesFile {
   static const String homeQr = '${_imageDir}home_qr.png';
   static const String addMoney = '${_imageDir}add_money.png';
   static const String laoQRLogo = '${_imageDir}lao_qr_logo.png';
-  static const String placeholder = '${_imageDir}placeholder.jpg';
-  static const String myPic = '${_imageDir}my_pic.png';
+  // static const String placeholder = '${_imageDir}placeholder.jpg';
+  static const String placeholder = '${_imageDir}avatar.png';
+  static const String myPic = placeholder;
+  // static const String myPic = '${_imageDir}my_pic.png';
   static const String kokKokLogo = '${_imageDir}kokkok_logo.png';
 
 

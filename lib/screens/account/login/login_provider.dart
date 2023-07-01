@@ -123,7 +123,7 @@ class LoginProvider extends BaseViewModel {
   }
 
   void _navigateToHomeScreen() {
-    Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
+    Navigator.of(context).pushReplacementNamed(Routes.dashboardScreen);
   }
 
   void forgotPassword() {

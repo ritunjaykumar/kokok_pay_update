@@ -60,7 +60,9 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
             right: 20,
             bottom: 10,
             child: FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.qrScannerScreen);
+              },
               label: const Text('Scan & Pay'),
               icon: const Icon(Icons.qr_code_scanner),
             ),
@@ -131,11 +133,15 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                         onPressed: homeProvider.amountHiddenToggle,
                         icon: Icon(
                           homeProvider.isAmountHidden ? Icons.visibility_off : Icons.visibility,
+                          color: Colors.white,
                         ),
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.refresh),
+                        icon: const Icon(
+                          Icons.refresh,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   )
@@ -144,7 +150,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
             },
           ),
           const SizedBox(height: 6),
-          Row(
+          /* Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
@@ -181,7 +187,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                 ),
               ),
             ],
-          ),
+          ),*/
         ],
       ),
     );
@@ -231,9 +237,9 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                   itemCount: length,
                   itemBuilder: (ctx, i) {
                     TransactionData transactionData = homeProvider.transactionData[i];
-                    if(length == i+1){
+                    if (length == i + 1) {
                       return const ListTile();
-                    }else {
+                    } else {
                       return ListTile(
                         minVerticalPadding: 0,
                         title: Text(transactionData.to),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:kokok_pay/resources/asset_manager.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../application/push_notification_configuration.dart';
 import '../painter/login_painter.dart';
@@ -71,47 +73,36 @@ class _UnknownScreenState extends State<UnknownScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Unknown'),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        floatingActionButton: FloatingActionButton(
+      appBar: AppBar(
+        title: const Text('Under Development'),
+        elevation: 0,
+      ),
+      /*floatingActionButton: FloatingActionButton(
           onPressed: showNotification,
           child: const Icon(Icons.add),
+        ),*/
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              LottieFile.notFoundLottie,
+              addRepaintBoundary: true,
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+            Text(
+              'Under Development',
+              style: theme.textTheme.headlineMedium,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
-        extendBodyBehindAppBar: true,
-        body: CustomPaint(
-          painter: LoginBgPainter(theme.colorScheme.primary),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Lottie.asset(
-                    //   LottieFile.notFoundLottie,
-                    //   addRepaintBoundary: true,
-                    //   fit: BoxFit.cover,
-                    // ),
-                    Text(
-                      'Under construction! please contact to bank $counter',
-                      style: theme.textTheme.headlineMedium,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  // Navigator.of(context).pop();
-                },
-                icon: const Icon(Icons.arrow_back),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }
 

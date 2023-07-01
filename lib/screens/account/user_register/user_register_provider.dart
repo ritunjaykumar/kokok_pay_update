@@ -116,7 +116,7 @@ class UserRegisterProvider extends BaseViewModel {
         firstName: 'Ritunjay',
         lastName: 'Kumar',
         gender: 'MALE',
-        mobileNumber: '8083816290',
+        mobileNumber: '2052592123',
         regOption: 'regOption',
         state: 'state'
       ),
