@@ -56,7 +56,7 @@ class ThemeResources {
       inputDecorationTheme: const InputDecorationTheme().copyWith(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: SizeResource.value_18,
-            vertical: SizeResource.value_16,
+            vertical: SizeResource.value_12,
           ),
           enabledBorder: _getOutlineInputBorder(ColorResource.lightPrimary),
           focusedBorder: _getOutlineInputBorder(ColorResource.lightSecondary),

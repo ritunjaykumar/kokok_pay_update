@@ -190,7 +190,7 @@ class ConfirmationTransaction extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(subTitle, style: textTheme.bodyLarge),
-          const SizedBox(height: 2),
+          // const SizedBox(height: 2),
           Padding(
             padding: const EdgeInsets.only(left: 4.0),
             child: Text(title, style: textTheme.titleMedium),

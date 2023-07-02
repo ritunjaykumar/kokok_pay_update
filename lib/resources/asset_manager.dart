@@ -36,6 +36,7 @@ class ImagesFile {
   static const String myPic = placeholder;
   // static const String myPic = '${_imageDir}my_pic.png';
   static const String kokKokLogo = '${_imageDir}kokkok_logo.png';
+  static const String edlBanner = '${_imageDir}edl_image.jpeg';
 
 
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kokok_pay/screens/card/card_screen.dart';
 import 'package:kokok_pay/screens/dashboard/dashboard_screen.dart';
+import 'package:kokok_pay/screens/edl/edl_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_amount_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 import 'package:kokok_pay/screens/result/result_screen.dart';
@@ -48,6 +49,7 @@ class Routes {
   static const String resultScreen = 'resultScreen';
   static const String cardScreen = 'cardScreen';
   static const String transferScreen = 'transferScreen';
+  static const String edlScreen = 'edlScreen';
 }
 
 class RouteResource {
@@ -94,6 +96,8 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const CardScreen());
       case Routes.transferScreen:
         return MaterialPageRoute(builder: (_) => const TransferScreen());
+      case Routes.edlScreen:
+        return MaterialPageRoute(builder: (_) => const EdlScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }

@@ -14,12 +14,12 @@ class MoreProvider extends BaseViewModel {
 
   List<MenuItemData> _initMenuItems() {
     return <MenuItemData>[
-      MenuItemData(title: 'Wallet', icon: Icons.wallet, path: Routes.walletScreen),
       MenuItemData(title: 'Transfer', icon: Icons.send, path: Routes.transferScreen),
-      MenuItemData(title: 'Favorite', icon: Icons.favorite_border, path: 'Routes.calenderScreen'),
-      MenuItemData(title: 'EDl', icon: Icons.electric_bolt, path: 'Routes.calenderScreen'),
-      MenuItemData(title: 'Support', icon: Icons.support_agent, path: 'Routes.calenderScreen'),
+      MenuItemData(title: 'Wallet', icon: Icons.wallet, path: Routes.walletScreen),
       MenuItemData(title: 'My Cards', icon: Icons.credit_card, path: Routes.cardScreen),
+      MenuItemData(title: 'Favorite', icon: Icons.favorite_border, path: 'Routes.calenderScreen'),
+      MenuItemData(title: 'EDL', icon: Icons.electric_bolt, path: Routes.edlScreen),
+      MenuItemData(title: 'Support', icon: Icons.support_agent, path: 'Routes.calenderScreen'),
     ];
   }
 

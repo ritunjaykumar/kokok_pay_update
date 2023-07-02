@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/transfer/transfer_provider.dart';
 import 'package:kokok_pay/screens/widgets/widget/widgets.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,14 @@ class _TransferScreenMain extends StatefulWidget {
 class _TransferScreenMainState extends State<_TransferScreenMain> {
   final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   String toMember = 'KOK KOK Wallet';
+  bool showBalance = false;
+
+  void showBalanceToggle() {
+    showBalance = !showBalance;
+    setState(() {});
+  }
 
   void onClickChip(String amount) {
     _amountController.text = amount;
@@ -67,13 +75,17 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    padding: const EdgeInsets.only(left: 8),
                     decoration: BoxDecoration(
-                      color: colorScheme.primary,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
-                      ),
-                    ),
+                        // color: colorScheme.primary,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                        ),
+                        gradient: LinearGradient(colors: [
+                          colorScheme.primary,
+                          colorScheme.primaryContainer,
+                        ])),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -90,22 +102,26 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                               ),
                               Text(
                                 '2052592794',
-                                style: textTheme.titleMedium?.copyWith(
+                                style: textTheme.bodyMedium?.copyWith(
                                   color: colorScheme.onPrimary,
                                 ),
                               ),
                               Text(
-                                'LAK 103,345,345',
-                                style: textTheme.titleMedium?.copyWith(
+                                showBalance ? 'LAK 103,345,345' : 'xxxxxxxxxxx',
+                                style: textTheme.bodyLarge?.copyWith(
                                   color: colorScheme.onPrimary,
                                 ),
                               )
                             ],
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('Show Balance'),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: OutlinedButton(
+                            onPressed: showBalanceToggle,
+                            style: ElevatedButton.styleFrom(foregroundColor: Colors.black),
+                            child: Text(showBalance ? 'Hide Balance' : 'Show Balance'),
+                          ),
                         ),
                       ],
                     ),
@@ -137,7 +153,7 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 22),
+                        const SizedBox(height: 12),
                         const Text('To Mobile Number'),
                         TextField(
                           controller: _mobileNumberController,
@@ -151,12 +167,15 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                                     _mobileNumberController.text = mobileNumber;
                                   }
                                 },
-                                icon: const Icon(Icons.contact_page_rounded),
+                                icon: Icon(
+                                  Icons.contact_page_rounded,
+                                  color: colorScheme.primary,
+                                ),
                               ),
                               prefixIcon: const Icon(Icons.phone_android)),
                           keyboardType: TextInputType.phone,
                         ),
-                        const SizedBox(height: 22),
+                        const SizedBox(height: 12),
                         const Text('Enter Amount'),
                         TextField(
                           controller: _amountController,
@@ -170,11 +189,20 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.number,
                         ),
+                        const SizedBox(height: 12),
+                        const Text('Description'),
+                        TextField(
+                          controller: _descriptionController,
+                          decoration: const InputDecoration(
+                              hintText: 'enter description',
+                              prefixIcon: Icon(Icons.description)),
+                          keyboardType: TextInputType.text,
+                        ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -197,7 +225,9 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                       width: double.infinity,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showConfirmationDialog();
+                        },
                         child: const Text('Proceed'),
                       ),
                     ),
@@ -235,6 +265,18 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
       setState(() {});
     }
   }
+
+  void showConfirmationDialog() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) {
+        return ConfirmationTransaction(
+          amount: _amountController.text,
+          description: _descriptionController.text,
+        );
+      },
+    );
+  }
 }
 
 //////////////////////
@@ -259,7 +301,6 @@ class MemberSelectDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       height: 150,
@@ -277,6 +318,76 @@ class MemberSelectDialog extends StatelessWidget {
             _getChild('Indochina Bank', context),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/////////
+class ConfirmationTransaction extends StatelessWidget {
+  const ConfirmationTransaction({super.key, required this.amount, required this.description});
+
+  final String amount;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DialogAppbar(
+          title: 'Confirm Transaction',
+          icon: Icons.close,
+          callback: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        _listTile('Mr. Inpone', 'From Customer', context),
+        _listTile('Mr. Fragrance\n2052593425', 'To Customer', context),
+        _listTile('LAK $amount', 'Transaction Amount', context),
+        _listTile(description, 'Description', context),
+        _listTile('LAK 0.0', 'Transaction Fee', context, false),
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.all(8),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pushReplacementNamed(Routes.resultScreen);
+            },
+            child: const Text('Confirm'),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _listTile(String title, dynamic subTitle, BuildContext context, [bool border = true]) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(subTitle, style: textTheme.bodyMedium),
+          // const SizedBox(height: 2),
+          Padding(
+            padding: const EdgeInsets.only(left: 4.0),
+            child: Text(title, style: textTheme.titleSmall),
+          ),
+          if (border)
+            Container(
+              margin: const EdgeInsets.only(top: 8),
+              width: double.infinity,
+              height: 1,
+              color: Colors.grey.shade400,
+            ),
+        ],
       ),
     );
   }

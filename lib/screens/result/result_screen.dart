@@ -92,7 +92,7 @@ class _ResultScreenMainState extends State<_ResultScreenMain> {
                     _getTileList('Receiver', 'Mr. Fragrance'),
                     _getTileList('Date', '2023-06-20'),
                     _getTileList('Time', '12:34:97 PM'),
-                    _getTileList('Description', 'paying my friends'),
+                    _getTileList('Description', 'test payment'),
                     _getTileList('transaction type', 'customer'),
                   ],
                 ),
@@ -129,7 +129,7 @@ class _ResultScreenMainState extends State<_ResultScreenMain> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.of(context).pop();
                 },
                 child: const Text('Home'),
