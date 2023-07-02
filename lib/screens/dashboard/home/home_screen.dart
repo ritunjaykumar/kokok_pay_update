@@ -63,8 +63,13 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
               onPressed: () {
                 Navigator.of(context).pushNamed(Routes.qrScannerScreen);
               },
-              label: const Text('Scan & Pay'),
-              icon: const Icon(Icons.qr_code_scanner),
+              label: Text(
+                'Scan & Pay',
+                style: textTheme.bodyMedium?.copyWith(
+                  color: colorScheme.onPrimary,
+                ),
+              ),
+              icon: Icon(Icons.qr_code_scanner, color: colorScheme.onPrimary),
             ),
           )
         ],
@@ -121,7 +126,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    homeProvider.isAmountHidden ? '₭ ${homeProvider.amount}' : 'XXXXXXXXXXX',
+                    homeProvider.isAmountHidden ? '₭ ${homeProvider.amount}' : 'xxxxxxxxx',
                     style: textTheme.titleLarge?.copyWith(
                       color: colorScheme.onPrimary,
                       fontWeight: FontWeight.bold,

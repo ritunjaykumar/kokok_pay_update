@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/screens/dashboard/dashboard_provider.dart';
 import 'package:kokok_pay/screens/widgets/menu/bottom_navigation.dart';
@@ -40,6 +41,9 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
           builder: (ctx, dashboardProvider, child) {
             return Text(dashboardProvider.title);
           },
+        ),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: colorScheme.onPrimary,
         ),
         centerTitle: true,
         leading: Container(

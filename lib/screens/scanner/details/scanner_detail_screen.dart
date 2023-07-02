@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/scanner/details/scanner_detail_provider.dart';
@@ -57,6 +58,9 @@ class _ScannerDetailScreenMainState extends State<_ScannerDetailScreenMain> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('QR Payment'),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: colorScheme.background,
+        ),
       ),
       body: Column(
         children: [
