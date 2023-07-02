@@ -8,6 +8,7 @@ import 'package:kokok_pay/screens/result/edl/result_edl_screen.dart';
 import 'package:kokok_pay/screens/result/transfer/result_transfer_screen.dart';
 import 'package:kokok_pay/screens/scanner/details/scanner_detail_screen.dart';
 import 'package:kokok_pay/screens/scanner/qr_scanner_screen.dart';
+import 'package:kokok_pay/screens/support/support_screen.dart';
 import 'package:kokok_pay/screens/transfer/transfer_screen.dart';
 import 'package:kokok_pay/screens/wallet/wallet_screen.dart';
 
@@ -52,6 +53,7 @@ class Routes {
   static const String transferScreen = 'transferScreen';
   static const String edlScreen = 'edlScreen';
   static const String resultEdlScreen = 'resultEdlScreen';
+  static const String supportScreen = 'supportScreen';
 }
 
 class RouteResource {
@@ -102,6 +104,8 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const EdlScreen());
       case Routes.resultEdlScreen:
         return MaterialPageRoute(builder: (_) => const ResultEdlScreen());
+      case Routes.supportScreen:
+        return MaterialPageRoute(builder: (_) => const SupportScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }

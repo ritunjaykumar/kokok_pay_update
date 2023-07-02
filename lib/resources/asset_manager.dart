@@ -11,6 +11,7 @@ class LottieFile {
   static const String errorLottie = '${_lottieDir}error_lottie.json';
   static const String networkErrorLottie = '${_lottieDir}network_error_lottie.json';
   static const String notFoundLottie = '${_lottieDir}not_found.json';
+  static const String contactUs = '${_lottieDir}contact_us.json';
 
   LottieFile._();
 }
