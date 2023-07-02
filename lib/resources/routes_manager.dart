@@ -6,6 +6,7 @@ import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 import 'package:kokok_pay/screens/result/result_screen.dart';
 import 'package:kokok_pay/screens/scanner/details/scanner_detail_screen.dart';
 import 'package:kokok_pay/screens/scanner/qr_scanner_screen.dart';
+import 'package:kokok_pay/screens/transfer/transfer_screen.dart';
 import 'package:kokok_pay/screens/wallet/wallet_screen.dart';
 
 import '/screens/account/forgot_pin/forgot_pin_screen.dart';
@@ -46,6 +47,7 @@ class Routes {
   static const String scannerDetailScreen = 'scannerDetailScreen';
   static const String resultScreen = 'resultScreen';
   static const String cardScreen = 'cardScreen';
+  static const String transferScreen = 'transferScreen';
 }
 
 class RouteResource {
@@ -90,6 +92,8 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const ResultScreen());
       case Routes.cardScreen:
         return MaterialPageRoute(builder: (_) => const CardScreen());
+      case Routes.transferScreen:
+        return MaterialPageRoute(builder: (_) => const TransferScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }

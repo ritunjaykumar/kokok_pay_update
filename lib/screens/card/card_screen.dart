@@ -75,7 +75,7 @@ class _CardScreenMainState extends State<_CardScreenMain> {
                     backBackground: CardBackgrounds.white,
                     showShadow: true,
                     mask: getCardTypeMask(cardType: CardType.masterCard),
-                    cardType: CardType.masterCard,
+                    cardType: CardType.other,
                   ),
                 );
               },
@@ -198,7 +198,7 @@ class _CardScreenMainState extends State<_CardScreenMain> {
                               ),
                             ),
                           ),
-                          Container(
+                          /*Container(
                             margin: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
@@ -224,7 +224,7 @@ class _CardScreenMainState extends State<_CardScreenMain> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                          ),
+                          ),*/
                         ],
                       ),
                     ),
