@@ -150,7 +150,7 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           children: [
-                            _getTileList('transaction fee', '₭ 10.0'),
+                            _getTileList('Transaction fee', '₭ 10.0'),
                             _getTileList('Transaction Id', '1238763492347'),
                             _getTileList('Bill Number', '873648728472384'),
                             _getTileList('Sender', 'Mr. Inpone'),
@@ -160,7 +160,7 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
                             _getTileList('Due Month', 'June'),
                             _getTileList('Due Year', '2023'),
                             _getTileList('Description', 'EDL Payment'),
-                            _getTileList('transaction type', 'Bill Payment'),
+                            _getTileList('Transaction type', 'Bill Payment'),
                           ],
                         ),
                       ),

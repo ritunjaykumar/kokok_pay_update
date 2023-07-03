@@ -133,12 +133,12 @@ class _ProfileScreenMainState extends State<_ProfileScreenMain> {
           child: Column(
             children: [
               userInfoChildUi(Icons.calendar_month_rounded, 'Date of Birth', '17-02-1995'),
-              userInfoChildUi(Icons.email_outlined, 'Email Id', 'ritunjay@gmail.com'),
-              userInfoChildUi(Icons.home_outlined, 'Address', 'Laos'),
-              userInfoChildUi(Icons.transgender, 'Gender', 'Male'),
               // userInfoChildUi(Icons.credit_card, 'Account type', 'Current Account'),
-              userInfoChildUi(Icons.credit_card, 'Branch', 'Vientiane'),
               userInfoChildUi(Icons.account_balance, 'IFSC Code', 'IB123876'),
+              userInfoChildUi(Icons.credit_card, 'Branch', 'Vientiane'),
+              userInfoChildUi(Icons.email_outlined, 'Email Id', 'ritunjay@gmail.com'),
+              userInfoChildUi(Icons.transgender, 'Gender', 'Male'),
+              userInfoChildUi(Icons.home_outlined, 'Address', 'Laos'),
             ],
           ),
         ),

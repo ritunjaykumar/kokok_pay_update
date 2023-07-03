@@ -98,15 +98,15 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
           // const SizedBox(height: 20),
           Row(
             children: [
-              Text(
+              /*Text(
                 'Hello',
                 style: textTheme.bodyLarge?.copyWith(
                   color: colorScheme.onPrimary,
                 ),
-              ),
+              ),*/
               const SizedBox(width: 10),
               Text(
-                'Mr. Inpone',
+                'Hello  Mr. Inpone',
                 style: textTheme.titleMedium?.copyWith(
                   color: colorScheme.onPrimary,
                   fontWeight: FontWeight.bold,

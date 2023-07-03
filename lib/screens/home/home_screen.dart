@@ -52,17 +52,15 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
   Widget build(BuildContext context) {
     final appLocal = AppLocalizations.of(context)!;
     Locale selectedLocale = Localizations.localeOf(context);
-    return Scaffold(
-      bottomNavigationBar: const _BottomNavigationWidget(),
+    return const Scaffold(
+      bottomNavigationBar: _BottomNavigationWidget(),
       body: Column(
-        children: const [
+        children: [
           _TopContainer(),
           _TopBackgroundWidget(),
           _ProfilesDetails(),
           _RecentTransactionHeading(),
-          Expanded(
-            child: _RecentTransaction(),
-          ),
+          Expanded(child: _RecentTransaction()),
           _BottomMenu(),
         ],
       ),

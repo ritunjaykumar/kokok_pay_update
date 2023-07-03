@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:kokok_pay/application/application.dart';
 import 'package:kokok_pay/resources/size_manager.dart';
@@ -47,14 +48,19 @@ class _PolicyScreenMain extends StatefulWidget {
 class _PolicyScreenMainState extends State<_PolicyScreenMain> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Terms & Conditions'),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            systemNavigationBarColor: colorScheme.background
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(SizeResource.value_16),
+      body: const Padding(
+        padding: EdgeInsets.all(SizeResource.value_16),
         child: Column(
-          children: const [
+          children: [
             _TermConditionWidget(),
             // _ActionLayout(),
           ],

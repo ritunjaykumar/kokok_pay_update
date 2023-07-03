@@ -19,20 +19,19 @@ class HomeProvider extends BaseViewModel {
 
   void _transactionsData() {
     _transactionData.addAll([
-      TransactionData('txnId', 12345, '₭', 'Surya', 'sent', '2023-05-20 12:23 am'),
-      TransactionData('txnId', 45345, '₭', 'Ritu', 'sent', '2023-05-12 12:23 am'),
-      TransactionData('txnId', 56832, '₭', 'Rakesh', 'receive', '2023-05-12 12:23 am'),
-      TransactionData('txnId', 56765, '₭', 'Rajesh', 'receive', '2023-05-13 12:23 am'),
-      TransactionData('txnId', 12379, '₭', 'Riya', 'sent', '2023-04-10 12:23 am'),
-      TransactionData('txnId', 9876, '₭', 'Ramesh', 'receive', '2023-04-23 12:23 am'),
-      TransactionData('txnId', 71453, '₭', 'Ritesh', 'receive', '2023-03-15 12:23 am'),
-      TransactionData('txnId', 9835, '₭', 'Raviraj', 'sent', '2023-05-13 12:23 am'),
-      TransactionData('txnId', 3674, '₭', 'Rituraj', 'sent', '2023-05-17 12:23 am'),
-      TransactionData('txnId', 5672, '₭', 'Rani', 'sent', '2023-05-19 12:23 am'),
-      TransactionData('txnId', 7865, '₭', 'Rakhi', 'receive', '2023-06-10 12:23 am'),
-      TransactionData('txnId', 98087, '₭', 'Raviteja', 'sent', '2023-05-16 12:23 am'),
-      TransactionData('txnId', 45309, '₭', 'Ravindara', 'receive', '2023-04-26 12:23 am'),
-      TransactionData('txnId', 5634, '₭', 'Rahul', 'sent', '2023-04-02 12:23 am'),
+      TransactionData('txnId', 56832, '₭', 'Kouprasith Abhay', 'receive', '2023-05-12 12:23 am'),
+      TransactionData('txnId', 56765, '₭', 'Alexandra Bounxouei', 'receive', '2023-05-13 12:23 am'),
+      TransactionData('txnId', 12379, '₭', 'Anouvong', 'sent', '2023-04-10 12:23 am'),
+      TransactionData('txnId', 71453, '₭', 'Boua', 'receive', '2023-03-15 12:23 am'),
+      TransactionData('txnId', 9835, '₭', 'Bounkhong', 'sent', '2023-05-13 12:23 am'),
+      TransactionData('txnId', 3674, '₭', 'Bouasone Bouphavanh.', 'sent', '2023-05-17 12:23 am'),
+      TransactionData('txnId', 5672, '₭', 'Laasaenthai Bouvanaat', 'sent', '2023-05-19 12:23 am'),
+      TransactionData('txnId', 7865, '₭', 'General Cheng', 'receive', '2023-06-10 12:23 am'),
+      TransactionData('txnId', 98087, '₭', 'Laasaenthai Bouvanaat', 'sent', '2023-05-16 12:23 am'),
+      TransactionData('txnId', 45309, '₭', 'Bouasone Bouphavanh', 'receive', '2023-04-26 12:23 am'),
+      TransactionData('txnId', 5634, '₭', 'Anouvong', 'sent', '2023-04-02 12:23 am'),
+      TransactionData('txnId', 71453, '₭', 'Boua', 'receive', '2023-03-15 12:23 am'),
+      TransactionData('txnId', 9835, '₭', 'Bounkhong', 'sent', '2023-05-13 12:23 am'),
     ]);
   }
 

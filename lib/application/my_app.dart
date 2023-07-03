@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:kokok_pay/screens/dashboard/dashboard_screen.dart';
-import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../service/provider/notification_provider.dart';
 import '/models/enums/enums.dart';
 import '/resources/routes_manager.dart';
 import '/resources/string_manager.dart';
 import '/resources/theme_manager.dart';
 import '/screens/unknown/unknown_screen.dart';
 import '/service/provider/settings_provider.dart';
+import '../service/provider/notification_provider.dart';
 import '../utils/constant/app_constant.dart';
 
 class MyApp extends StatelessWidget {
@@ -46,12 +44,12 @@ class MyApp extends StatelessWidget {
             title: StringResource().appTitle,
             theme: ThemeResources().getLightThemeData(),
             darkTheme: ThemeResources().getDarkThemeData(),
-            themeMode: settingProvider.themeMode,
+            // themeMode: settingProvider.themeMode,
+            themeMode: ThemeMode.light,
             onGenerateRoute: RouteResource.getGeneratedRoutes,
             routes: RouteResource.getStaticRoute(context),
-            // initialRoute: Routes.homeScreen,
-            // initialRoute: Routes.splashScreen,
-            initialRoute: Routes.dashboardScreen,
+            initialRoute: Routes.splashScreen,
+            // initialRoute: Routes.dashboardScreen,
             themeAnimationCurve: Curves.easeIn,
             themeAnimationDuration: const Duration(seconds: 1),
             onUnknownRoute: (RouteSettings routeSetting) {

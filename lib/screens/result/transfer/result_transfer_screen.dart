@@ -152,14 +152,14 @@ class _ResultTransferScreenMainState extends State<_ResultTransferScreenMain> {
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           children: [
-                            _getTileList('transaction fee', '₭ 300'),
+                            _getTileList('Transaction fee', '₭ 300'),
                             _getTileList('Transaction Id', '1238763492347'),
                             _getTileList('Sender', 'Mr. Inpone'),
                             _getTileList('Receiver', 'Mr. Fragrance'),
                             _getTileList('Date', '2023-06-20'),
                             _getTileList('Time', '12:34:97 PM'),
                             _getTileList('Description', 'test payment'),
-                            _getTileList('transaction type', 'customer'),
+                            _getTileList('Transaction type', 'customer'),
                           ],
                         ),
                       ),

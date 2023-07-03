@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -40,11 +41,17 @@ class _SplashScreenMainState extends State<_SplashScreenMain> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: colorScheme.primary
+        ),
+      ),
       body: Container(
         alignment: Alignment.center,
-        color: theme.colorScheme.primary,
+        color: colorScheme.primary,
         child: LottieBuilder.asset(LottieFile.progressLottie),
       ),
     );

@@ -39,10 +39,15 @@ class _LoginScreenMain extends StatefulWidget {
 class _LoginScreenMainState extends State<_LoginScreenMain> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         elevation: SizeResource.value_0,
         backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle(
+            systemNavigationBarColor: colorScheme.primary
+        ),
         actions: const [LanguageWidget()],
       ),
       extendBodyBehindAppBar: true,

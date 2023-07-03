@@ -41,6 +41,9 @@ class _ForgotPinScreenMainState extends State<_ForgotPinScreenMain> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Forgot PIN'),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            systemNavigationBarColor: theme.colorScheme.background
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
