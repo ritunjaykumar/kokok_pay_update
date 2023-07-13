@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kokok_pay/resources/custom_icon.dart';
+import 'package:kokok_pay/screens/painter/background_painter.dart';
 import 'package:kokok_pay/screens/widgets/common/language_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,15 @@ class _LoginScreenMain extends StatefulWidget {
 }
 
 class _LoginScreenMainState extends State<_LoginScreenMain> {
+  final _formKey = GlobalKey<FormState>();
+  final _pinController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pinController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -45,13 +55,70 @@ class _LoginScreenMainState extends State<_LoginScreenMain> {
       appBar: AppBar(
         elevation: SizeResource.value_0,
         backgroundColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle(
-            systemNavigationBarColor: colorScheme.primary
-        ),
+        systemOverlayStyle: SystemUiOverlayStyle(systemNavigationBarColor: colorScheme.background),
         actions: const [LanguageWidget()],
       ),
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
-      body: SingleChildScrollView(
+      body: CustomPaint(
+        painter: BackgroundPainter(colorScheme.primaryContainer),
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const BankLogo(),
+                  const SizedBox(height: 100,),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Form(
+                      key: _formKey,
+                      child: TextFormField(
+                        controller: _pinController,
+                        obscureText: true,
+                        obscuringCharacter: 'x',
+                        decoration: InputDecoration(
+                          hintText: 'Pin',
+                          suffixIcon: IconButton(
+                              icon: const Icon(
+                                /*loginProvider.isObscure ?*/
+                                Icons.visibility /*: Icons.visibility_off*/,
+                              ),
+                              color: colorScheme.primary,
+                              onPressed: () {}),
+                        ),
+                        onFieldSubmitted: (pin) {},
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(6),
+                        ],
+                        onTapOutside: (PointerDownEvent event) {
+                          SupportMethods.closeKeyboard();
+                        },
+                        validator: (pin) {
+                          if (pin == null || pin.isEmpty) {
+                            return 'please enter the pin';
+                          }
+                          if (pin.length < 6) {
+                            return 'pin is not valid';
+                          }
+                          return null;
+                        },
+                        onSaved: (pin) {},
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      /* body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Container(
           height: MediaQuery.sizeOf(context).height,
@@ -85,7 +152,7 @@ class _LoginScreenMainState extends State<_LoginScreenMain> {
             ],
           ),
         ),
-      ),
+      ),*/
     );
   }
 }
@@ -149,8 +216,6 @@ class _LoginFormState extends State<_LoginForm> {
     context.read<LoginProvider>().mpinLogin(_pinController.text);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -199,7 +264,7 @@ class _LoginFormState extends State<_LoginForm> {
                     theme.colorScheme.primary.withOpacity(0.5),
                   ),
                 ),
-                onFieldSubmitted: (pin){
+                onFieldSubmitted: (pin) {
                   _login();
                 },
                 keyboardType: TextInputType.number,
