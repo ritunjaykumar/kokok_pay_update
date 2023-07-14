@@ -23,7 +23,11 @@ class _ErrorDialogWidget extends StatelessWidget {
             appLocal.alert,
             style: theme.textTheme.titleLarge!.copyWith(color: theme.colorScheme.error),
           ),
-          Lottie.asset(LottieFile.failedLottie, fit: BoxFit.fill, width: SizeResource.dialogSize),
+          Lottie.asset(
+            LottieFile.failedLottie,
+            fit: BoxFit.fill,
+            width: SizeResource.value_80,
+          ),
           Text(
             errorMsg ?? appLocal.somethingWentWrong,
             style: theme.textTheme.bodyLarge,
@@ -254,9 +258,9 @@ class _YesNoDialogWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           SizeResource.value_12,
         ),
-        border: Border.all(
+        /*border: Border.all(
           color: theme.colorScheme.primary,
-        ),
+        ),*/
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

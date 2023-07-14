@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kokok_pay/screens/painter/background_painter.dart';
 import 'package:provider/provider.dart';
 
 import '/resources/size_manager.dart';
@@ -48,10 +49,13 @@ class _DeviceRegisterScreenMain extends StatefulWidget {
 class _DeviceRegisterScreenMainState extends State<_DeviceRegisterScreenMain> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registration'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: SizeResource.value_8),
@@ -59,20 +63,32 @@ class _DeviceRegisterScreenMainState extends State<_DeviceRegisterScreenMain> {
           )
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: SizeResource.value_16,
-            ),
-            child: Image.asset(
-              ImagesFile.bankLogo,
-              height: SizeResource.value_150,
+      extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
+      body: CustomPaint(
+        painter: BackgroundPainter(colorScheme.primary),
+        child: SafeArea(
+          child: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: SizeResource.value_16,
+                  ),
+                  child: Image.asset(
+                    ImagesFile.bankLogo,
+                    height: SizeResource.value_80,
+                  ),
+                ),
+                const SizedBox(height: 100),
+                const _RegistrationFormWidget(),
+              ],
             ),
           ),
-          const _RegistrationFormWidget(),
-        ],
+        ),
       ),
     );
   }

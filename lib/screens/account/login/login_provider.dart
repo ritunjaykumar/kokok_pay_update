@@ -49,10 +49,10 @@ class LoginProvider extends BaseViewModel {
 
   void biometricLogin() async {
     var biometricEnable = localStorage.getBiometricEnable();
-    if (biometricEnable == false) {
+    /*if (biometricEnable == false) {
       nativeToast.showToast(ToastData.warning(message: 'Biometric is not enabled'));
       return;
-    }
+    }*/
     try {
       var status = await appBiometric.authenticateBiometric(
         title: 'Please authenticate to login',

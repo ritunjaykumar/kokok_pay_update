@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kokok_pay/screens/account/device_register/device_register_provider.dart';
+import 'package:kokok_pay/screens/painter/background_painter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/enums/enums.dart';
@@ -61,8 +62,15 @@ class _UserRegisterScreenMain extends StatefulWidget {
 class _UserRegisterScreenMainState extends State<_UserRegisterScreenMain> {
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
+      appBar: AppBar(
+        title: const Text('Register'),
+        backgroundColor: Colors.transparent,
+      ),
+      extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: false,
       body: WillPopScope(
         onWillPop: () async {
           if (context.read<UserRegisterProvider>().isAddress) {
@@ -71,36 +79,37 @@ class _UserRegisterScreenMainState extends State<_UserRegisterScreenMain> {
           }
           return true;
         },
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const _LogoWidget(),
-              context.watch<UserRegisterProvider>().isAddress
-                  ? const _AddressWidget()
-                  : const _FormWidget(),
-            ],
+        child: CustomPaint(
+          painter: BackgroundPainter(colorScheme.primary),
+          child: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(ResourceFile.appLogo),
+                  const SizedBox(height: 80),
+                  Text('Sign Up', style: textTheme.titleLarge),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          context.watch<UserRegisterProvider>().isAddress
+                              ? const _AddressWidget()
+                              : const _FormWidget(),
+                          Container(height: 200),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // Container(height: 200),
+                ],
+              ),
+            ),
           ),
         ),
       ),
-    );
-  }
-}
-
-//============================
-class _LogoWidget extends StatelessWidget {
-  const _LogoWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(ResourceFile.appLogo),
-        Text('Sign Up', style: theme.textTheme.titleLarge),
-      ],
     );
   }
 }

@@ -38,15 +38,6 @@ class _LoginScreenMain extends StatefulWidget {
 }
 
 class _LoginScreenMainState extends State<_LoginScreenMain> {
-  final _formKey = GlobalKey<FormState>();
-  final _pinController = TextEditingController();
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pinController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -61,57 +52,17 @@ class _LoginScreenMainState extends State<_LoginScreenMain> {
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       body: CustomPaint(
-        painter: BackgroundPainter(colorScheme.primaryContainer),
-        child: SizedBox(
+        painter: BackgroundPainter(colorScheme.primary),
+        child: const SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const BankLogo(),
-                  const SizedBox(height: 100,),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        controller: _pinController,
-                        obscureText: true,
-                        obscuringCharacter: 'x',
-                        decoration: InputDecoration(
-                          hintText: 'Pin',
-                          suffixIcon: IconButton(
-                              icon: const Icon(
-                                /*loginProvider.isObscure ?*/
-                                Icons.visibility /*: Icons.visibility_off*/,
-                              ),
-                              color: colorScheme.primary,
-                              onPressed: () {}),
-                        ),
-                        onFieldSubmitted: (pin) {},
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(6),
-                        ],
-                        onTapOutside: (PointerDownEvent event) {
-                          SupportMethods.closeKeyboard();
-                        },
-                        validator: (pin) {
-                          if (pin == null || pin.isEmpty) {
-                            return 'please enter the pin';
-                          }
-                          if (pin.length < 6) {
-                            return 'pin is not valid';
-                          }
-                          return null;
-                        },
-                        onSaved: (pin) {},
-                      ),
-                    ),
-                  ),
-
+                  BankLogo(),
+                  SizedBox(height: 100),
+                  _PinFormUI(),
                 ],
               ),
             ),
@@ -153,6 +104,147 @@ class _LoginScreenMainState extends State<_LoginScreenMain> {
           ),
         ),
       ),*/
+    );
+  }
+}
+
+//////////////+++++++++++++++++++++++++++++++++++++++++
+class _PinFormUI extends StatefulWidget {
+  const _PinFormUI({super.key});
+
+  @override
+  State<_PinFormUI> createState() => _PinFormUIState();
+}
+
+class _PinFormUIState extends State<_PinFormUI> {
+  final _formKey = GlobalKey<FormState>();
+  final _pinController = TextEditingController();
+  bool showPin = false;
+
+  void _toggleShowPin() {
+    showPin = !showPin;
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pinController.dispose();
+  }
+  void _login() {
+    bool validate = _formKey.currentState!.validate();
+    if (validate == false) {
+      return;
+    }
+    _formKey.currentState!.save();
+    context.read<LoginProvider>().mpinLogin(_pinController.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return Card(
+      elevation: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Pin Code',
+                    style: textTheme.bodyLarge,
+                  ),
+                ),
+              ),
+              TextFormField(
+                controller: _pinController,
+                obscureText: showPin,
+                obscuringCharacter: 'x',
+                decoration: InputDecoration(
+                  hintText: 'Pin',
+                  suffixIcon: IconButton(
+                    icon: Icon(showPin ? Icons.visibility : Icons.visibility_off),
+                    color: colorScheme.primary,
+                    onPressed: _toggleShowPin,
+                  ),
+                ),
+                onFieldSubmitted: (pin) {},
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(6),
+                ],
+                onTapOutside: (PointerDownEvent event) {
+                  SupportMethods.closeKeyboard();
+                },
+                validator: (pin) {
+                  if (pin == null || pin.isEmpty) {
+                    return 'please enter the pin';
+                  }
+                  if (pin.length < 6) {
+                    return 'pin is not valid';
+                  }
+                  return null;
+                },
+                onSaved: (pin) {},
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: context.read<LoginProvider>().forgotPassword,
+                  child: const Text('Forget Pin? Reset here'),
+                ),
+              ),
+              SizedBox(
+                width: 160,
+                child: ElevatedButton(
+                  onPressed: _login,
+                  child: const Text('Login'),
+                ),
+              ),
+              const SizedBox(height: 22),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _iconButton(Icons.fingerprint, context.read<LoginProvider>().biometricLogin),
+                  const SizedBox(width: 12),
+                  _iconButton(Icons.face, context.read<LoginProvider>().biometricLogin),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _iconButton(IconData icon, VoidCallback callback) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return SizedBox(
+      width: 44,
+      height: 44,
+      child: IconButton(
+        onPressed: callback,
+        icon: Icon(icon),
+        color: colorScheme.primary,
+        style: IconButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              SizeResource.value_12,
+            ),
+            side: BorderSide(
+              color: colorScheme.primary,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
