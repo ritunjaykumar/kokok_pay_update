@@ -50,14 +50,16 @@ class _MoreScreenMainState extends State<_MoreScreenMain> {
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(12),
-              scrollDirection: Axis.horizontal,
+              // scrollDirection: Axis.horizontal,
               itemCount: menuItems.length,
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                // crossAxisCount: 3,
+                // crossAxisCount: 1,
+                mainAxisExtent: 100,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                childAspectRatio: 1,
-                maxCrossAxisExtent: 200,
+                maxCrossAxisExtent: 120,
+                childAspectRatio: 3/2,
+                // maxCrossAxisExtent: 200,
               ),
               itemBuilder: (ctx, i) {
                 final menuItem = menuItems[i];

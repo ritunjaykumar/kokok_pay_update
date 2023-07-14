@@ -161,6 +161,7 @@ class _ConfirmationUserRegisterScreenMainState extends State<_ConfirmationUserRe
                       child: ListView(
                         shrinkWrap: true,
                         children: [
+                          const SizedBox(height: 10),
                           TextFormField(
                             controller: _mobileNumberController,
                             readOnly: true,

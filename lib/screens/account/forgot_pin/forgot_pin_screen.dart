@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kokok_pay/screens/painter/background_painter.dart';
 import 'package:provider/provider.dart';
 
 import '/resources/asset_manager.dart';
@@ -38,43 +39,67 @@ class _ForgotPinScreenMainState extends State<_ForgotPinScreenMain> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Forgot PIN'),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            systemNavigationBarColor: theme.colorScheme.background
-        ),
+        systemOverlayStyle:
+            SystemUiOverlayStyle(systemNavigationBarColor: theme.colorScheme.background),
+        backgroundColor: Colors.transparent,
+        elevation: 1,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Material(
-              elevation: SizeResource.value_2,
-              child: Container(
-                height: SizeResource.value_32,
-                color: theme.colorScheme.primaryContainer,
-                alignment: Alignment.center,
-                child: Text(
-                  'Enter OTP and PIN',
-                  style: theme.textTheme.titleMedium,
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      body: CustomPaint(
+        painter: BackgroundPainter(colorScheme.primary),
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                /*Material(
+                  elevation: SizeResource.value_2,
+                  child: Container(
+                    height: SizeResource.value_32,
+                    color: theme.colorScheme.primaryContainer,
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Enter OTP and PIN',
+                      style: theme.textTheme.titleMedium,
+                    ),
+                  ),
+                ),*/
+                Image.asset(
+                  ImagesFile.forgotPassword,
+                  width: 210,
                 ),
-              ),
-            ),
-            const SizedBox(height: SizeResource.value_16),
-            Card(
-              elevation: SizeResource.value_1,
-              child: Padding(
-                padding: const EdgeInsets.all(SizeResource.value_16),
-                child: Column(
-                  children: [
-                    Image.asset(ImagesFile.forgotPassword),
-                    const _ForgotPinForm(),
-                  ],
+                const SizedBox(height: 100),
+                 Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Card(
+                          elevation: SizeResource.value_1,
+                          child: Padding(
+                            padding: EdgeInsets.all(SizeResource.value_16),
+                            child: Column(
+                              children: [
+                                _ForgotPinForm(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(height: 300)
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
