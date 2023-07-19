@@ -76,9 +76,10 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
             width: double.infinity,
             fit: BoxFit.fill,
           ),
-          const SizedBox(height: 28),
+          // const SizedBox(height: 28),
           Expanded(
             child: Container(
+              padding: const EdgeInsets.only(top: 28),
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Colors.white,
@@ -88,130 +89,127 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                 ),
               ),
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: Column(
-                    children: [
-                      Text('EDL Payment', style: textTheme.titleMedium),
-                      Form(
-                        key: _formKey,
+                child: Column(
+                  children: [
+                    Text('EDL Payment', style: textTheme.titleMedium),
+                    Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('Select Province'),
+                            DropdownButtonFormField(
+                              value: 'Test 1 Province',
+                              items: ['Test 1 Province', 'Test 2 Province']
+                                  .map(
+                                    (e) => DropdownMenuItem<String>(
+                                      value: e,
+                                      child: Text(e),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: search ? null : (String? item) {},
+                              isExpanded: true,
+                              onSaved: (zone) {},
+                            ),
+                            const SizedBox(height: 12),
+                            const Text('Bill Number'),
+                            TextFormField(
+                              readOnly: search,
+                              decoration: InputDecoration(
+                                hintText: 'Please Enter Bill Number',
+                                suffixIcon: search
+                                    ? null
+                                    : IconButton(
+                                        onPressed: validateForm,
+                                        icon: const Icon(Icons.search),
+                                      ),
+                              ),
+                              keyboardType: TextInputType.number,
+                              validator: (billNumber) {
+                                if (billNumber == null || billNumber.isEmpty) {
+                                  return 'Please enter Bill number';
+                                }
+                                return null;
+                              },
+                              onSaved: (billNumber) {
+                                this.billNumber = billNumber!;
+                              },
+                            ),
+                            if (search)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(height: 12),
+                                  const Text('Description'),
+                                  TextFormField(
+                                    decoration: const InputDecoration(
+                                      hintText: 'please enter Description',
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    textInputAction: TextInputAction.next,
+                                    onSaved: (amount) {
+                                      this.amount = amount!;
+                                    },
+                                  ),
+                                  const SizedBox(height: 12),
+                                  const Text('Bill amount'),
+                                  TextFormField(
+                                    initialValue: '126335',
+                                    decoration: const InputDecoration(
+                                      hintText: 'Please enter bill amount',
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    onSaved: (description) {
+                                      this.description = description!;
+                                    },
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    if (search)
+                      Card(
+                        elevation: 1,
                         child: Padding(
                           padding: const EdgeInsets.all(16),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text('Select Province'),
-                              DropdownButtonFormField(
-                                value: 'Test 1 Province',
-                                items: ['Test 1 Province', 'Test 2 Province']
-                                    .map(
-                                      (e) => DropdownMenuItem<String>(
-                                        value: e,
-                                        child: Text(e),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: search ? null : (String? item) {},
-                                isExpanded: true,
-                                onSaved: (zone) {},
+                              Text(
+                                'Bill Details',
+                                style:
+                                    textTheme.titleMedium?.copyWith(color: colorScheme.primary),
                               ),
-                              const SizedBox(height: 12),
-                              const Text('Bill Number'),
-                              TextFormField(
-                                readOnly: search,
-                                decoration: InputDecoration(
-                                  hintText: 'Please Enter Bill Number',
-                                  suffixIcon: search
-                                      ? null
-                                      : IconButton(
-                                          onPressed: validateForm,
-                                          icon: const Icon(Icons.search),
-                                        ),
-                                ),
-                                keyboardType: TextInputType.number,
-                                validator: (billNumber) {
-                                  if (billNumber == null || billNumber.isEmpty) {
-                                    return 'Please enter Bill number';
-                                  }
-                                  return null;
-                                },
-                                onSaved: (billNumber) {
-                                  this.billNumber = billNumber!;
-                                },
-                              ),
-                              if (search)
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(height: 12),
-                                    const Text('Description'),
-                                    TextFormField(
-                                      decoration: const InputDecoration(
-                                        hintText: 'please enter Description',
-                                      ),
-                                      keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      onSaved: (amount) {
-                                        this.amount = amount!;
-                                      },
-                                    ),
-                                    const SizedBox(height: 12),
-                                    const Text('Bill amount'),
-                                    TextFormField(
-                                      initialValue: '126335',
-                                      decoration: const InputDecoration(
-                                        hintText: 'Please enter bill amount',
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      onSaved: (description) {
-                                        this.description = description!;
-                                      },
-                                    ),
-                                  ],
-                                ),
+                              const SizedBox(height: 8),
+                              _billInfoWidget('Bill Number', billNumber),
+                              _billInfoWidget('Due Amount', '₭ 126335'),
+                              _billInfoWidget('Due Month', 'June'),
+                              _billInfoWidget('Year', '2023'),
+                              _billInfoWidget('Address', '1A, Rue new, Vientiane'),
                             ],
                           ),
                         ),
                       ),
-                      if (search)
-                        Card(
-                          elevation: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Bill Details',
-                                  style:
-                                      textTheme.titleMedium?.copyWith(color: colorScheme.primary),
-                                ),
-                                const SizedBox(height: 8),
-                                _billInfoWidget('Bill Number', billNumber),
-                                _billInfoWidget('Due Amount', '₭ 126335'),
-                                _billInfoWidget('Due Month', 'June'),
-                                _billInfoWidget('Year', '2023'),
-                                _billInfoWidget('Address', '1A, Rue new, Vientiane'),
-                              ],
-                            ),
+                    if (search)
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 50,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pushReplacementNamed(Routes.resultEdlScreen);
+                            },
+                            child: const Text('Pay Bill'),
                           ),
                         ),
-                      if (search)
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pushReplacementNamed(Routes.resultEdlScreen);
-                              },
-                              child: const Text('Pay Bill'),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
+                      ),
+                  ],
                 ),
               ),
             ),

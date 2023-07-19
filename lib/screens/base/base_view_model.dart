@@ -44,7 +44,7 @@ class BaseViewModel extends ChangeNotifier {
     dialogUtil.showFailureDialog(context, failure);
   }
 
-  void init(){
-
+  void init() {
+    debugPrint('this base provider init method');
   }
 }

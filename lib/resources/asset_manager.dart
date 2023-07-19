@@ -39,6 +39,8 @@ class ImagesFile {
   // static const String myPic = '${_imageDir}my_pic.png';
   static const String kokKokLogo = '${_imageDir}kokkok_logo.png';
   static const String edlBanner = '${_imageDir}edl_image.jpeg';
+  static const String waterDrop = '${_imageDir}water_drop.png';
+  static const String electricity = '${_imageDir}electricity.png';
 
 
 }
