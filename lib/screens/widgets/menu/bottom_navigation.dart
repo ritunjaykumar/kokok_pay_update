@@ -5,12 +5,15 @@ class ItemData {
   final IconData alternate;
   final String label;
   final bool disable;
-
+  final bool badge;
+  final int badgeValue;
   const ItemData({
     required this.icon,
     required this.label,
     required this.alternate,
     this.disable = false,
+    this.badge = false,
+    this.badgeValue = 0,
   });
 }
 
@@ -45,12 +48,15 @@ class AnimatedNavigationWidget extends StatefulWidget {
     required this.currentIndex,
     required this.item,
     required this.navigationDecoration,
+
+
   });
 
   final int currentIndex;
   final List<ItemData> item;
   final ValueChanged<int> onTap;
   final NavigationDecoration navigationDecoration;
+
 
   @override
   State<AnimatedNavigationWidget> createState() => _AnimatedNavigationWidgetState();
@@ -59,7 +65,9 @@ class AnimatedNavigationWidget extends StatefulWidget {
 class _AnimatedNavigationWidgetState extends State<AnimatedNavigationWidget> {
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme
+        .of(context)
+        .colorScheme;
     return Container(
       margin: const EdgeInsets.all(8),
       width: double.infinity,
@@ -78,9 +86,25 @@ class _AnimatedNavigationWidgetState extends State<AnimatedNavigationWidget> {
   }
 
   Widget _menuItem(int idx, ItemData item, ValueChanged<int> onTap) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme
+        .of(context)
+        .colorScheme;
+    final textTheme = Theme
+        .of(context)
+        .textTheme;
     bool itemSelected = widget.currentIndex == idx;
+
+    Widget getIcon() {
+      return Icon(
+        itemSelected ? item.icon : item.alternate,
+        color: itemSelected
+            ? widget.navigationDecoration.selectedColor ?? colorScheme.primaryContainer
+            : widget.navigationDecoration.unselectedColor ?? colorScheme.secondaryContainer,
+        size: widget.navigationDecoration.iconSize,
+      );
+    }
+
+
     return InkWell(
       onTap: item.disable ? null : () => onTap(idx),
       child: AnimatedContainer(
@@ -98,13 +122,13 @@ class _AnimatedNavigationWidgetState extends State<AnimatedNavigationWidget> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              itemSelected ? item.icon : item.alternate,
-              color: itemSelected
-                  ? widget.navigationDecoration.selectedColor ?? colorScheme.primaryContainer
-                  : widget.navigationDecoration.unselectedColor ?? colorScheme.secondaryContainer,
-              size: widget.navigationDecoration.iconSize,
-            ),
+            if(item.badge)
+              Badge(
+                label: Text('${item.badgeValue}'),
+                child: getIcon(),
+              )
+            else
+              getIcon(),
             if (itemSelected)
               Flexible(
                 child: Padding(
@@ -127,11 +151,17 @@ class _AnimatedNavigationWidgetState extends State<AnimatedNavigationWidget> {
     final TextPainter textPainter = TextPainter(
       text: TextSpan(
         text: label,
-        style: Theme.of(context).textTheme.titleMedium,
+        style: Theme
+            .of(context)
+            .textTheme
+            .titleMedium,
       ),
-      textScaleFactor: MediaQuery.of(context).textScaleFactor,
+      textScaleFactor: MediaQuery
+          .of(context)
+          .textScaleFactor,
       textDirection: TextDirection.ltr,
-    )..layout();
+    )
+      ..layout();
     return textPainter.size.width;
   }
 }

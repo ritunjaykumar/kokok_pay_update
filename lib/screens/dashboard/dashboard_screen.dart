@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/screens/dashboard/dashboard_provider.dart';
+import 'package:kokok_pay/screens/dashboard/more/more_provider.dart';
 import 'package:kokok_pay/screens/widgets/menu/bottom_navigation.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,7 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Consumer<DashboardProvider>(
           builder: (ctx, dashboardProvider, child) {
             return Text(dashboardProvider.title);
@@ -61,7 +63,7 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
           ),
         ),
         actions: [
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: Badge(
               label: const Text('34'),
@@ -77,7 +79,24 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
                 ),
               ),
             ),
-          )
+          ),*/
+          PopupMenuButton<String>(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            icon: const Icon(Icons.menu),
+            onSelected: (String path){
+             Navigator.of(context).pushNamed(path);
+            },
+            itemBuilder: (ctx) {
+              return context.read<DashboardProvider>().menuItems.map(
+                (e) {
+                  return PopupMenuItem<String>(
+                    value: e.path,
+                    child: _getMenuItem(e),
+                  );
+                },
+              ).toList();
+            },
+          ),
         ],
       ),
       body: Consumer<DashboardProvider>(
@@ -100,6 +119,21 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
           );
         },
       ),
+    );
+  }
+
+  Widget _getMenuItem(MenuItemData menuItem) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return Row(
+      children: [
+        Icon(
+          menuItem.icon,
+          color: Colors.black,
+        ),
+        const SizedBox(width: 4),
+        Text(menuItem.title, style: textTheme.titleSmall)
+      ],
     );
   }
 }

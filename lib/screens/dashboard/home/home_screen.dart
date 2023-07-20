@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/dashboard/home/home_provider.dart';
+import 'package:kokok_pay/screens/dashboard/more/more_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -53,6 +54,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
           Column(
             children: [
               _topPartWidget(),
+              // const MoreScreen(),
               Expanded(child: _bottomPartWidget()),
             ],
           ),
@@ -69,7 +71,10 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                   color: colorScheme.onPrimary,
                 ),
               ),
-              icon: Icon(Icons.qr_code_scanner, color: colorScheme.onPrimary),
+              icon: Icon(
+                Icons.qr_code_scanner,
+                color: colorScheme.onPrimary,
+              ),
             ),
           )
         ],
@@ -83,15 +88,6 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
-      // decoration: BoxDecoration(
-      //   gradient: LinearGradient(
-      //     colors: [
-      //       colorScheme.primary,
-      //       colorScheme.primaryContainer,
-      //     ],
-      //
-      //   )
-      // ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -214,13 +210,13 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'My Transactions',
-                  style: textTheme.titleLarge,
+                  style: textTheme.titleMedium,
                 ),
                 IconButton(
                   onPressed: () {},
