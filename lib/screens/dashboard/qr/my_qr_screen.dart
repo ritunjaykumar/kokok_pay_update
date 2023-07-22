@@ -185,8 +185,8 @@ class _MessageScreenMainState extends State<_MessageScreenMain> {
                 child: ListTile(
                   title: const Text('Selected Bank'),
                   subtitle: Text(myQrProvider.bankDataResp!.name),
-                  leading: const CircleAvatar(
-                    foregroundImage: AssetImage(ImagesFile.bankLogo),
+                  leading: CircleAvatar(
+                    foregroundImage: AssetImage(myQrProvider.bankDataResp!.url),
                     radius: 18,
                   ),
                 ),
@@ -326,23 +326,33 @@ class SelectBankWidget extends StatelessWidget {
             },
           ),
           Expanded(
-            child: ListView.builder(
+            child: ListView.separated(
               itemCount: bankList.length,
               itemBuilder: (ctx, i) {
                 final bankData = bankList[i];
                 return ListTile(
-                  leading: const CircleAvatar(foregroundImage: AssetImage(ImagesFile.bankLogo)),
+                  leading: CircleAvatar(foregroundImage: AssetImage(bankData.url)),
                   title: Text(bankData.name),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  trailing: OutlinedButton(
+                  onTap: () {
+                    Navigator.of(context).pop(bankData);
+                  },
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    size: 18,
+                  ),
+                  /*trailing: OutlinedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(bankData);
+
                     },
                     child: const Text('Select'),
-                  ),
+                  ),*/
                 );
+              },
+              separatorBuilder: (ctx, i){
+                return const Divider();
               },
             ),
           ),

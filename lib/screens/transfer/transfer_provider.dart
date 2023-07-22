@@ -3,7 +3,8 @@ import 'package:kokok_pay/screens/base/base_view_model.dart';
 import 'package:kokok_pay/service/toast/toast_data.dart';
 
 class TransferProvider extends BaseViewModel {
-  TransferProvider(super.context);
+  TransferProvider(super.context, this._consI);
+  final String? _consI;
 
   Future<String?> readContact() async {
     if (await FlutterContactPicker.hasPermission()) {
@@ -18,6 +19,8 @@ class TransferProvider extends BaseViewModel {
     }
   }
 
+
+  String? get consI => _consI;
 
   Future<String?> _getMobileNumber() async{
     final FullContact contact = await FlutterContactPicker.pickFullContact();

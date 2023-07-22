@@ -2,12 +2,16 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:kokok_pay/application/application.dart';
 import 'package:kokok_pay/models/model/model_resp.dart';
+import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/screens/base/base_view_model.dart';
 import 'dart:ui' as ui;
 
 import 'package:kokok_pay/screens/dashboard/qr/my_qr_screen.dart';
+import 'package:kokok_pay/screens/widgets/common/bank_logo.dart';
+import 'package:kokok_pay/service/toast/toast_data.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyQrProvider extends BaseViewModel {
@@ -38,6 +42,13 @@ class MyQrProvider extends BaseViewModel {
   void saveImage(GlobalKey repaintKey) async {
     var image = await _qrToImage(repaintKey);
     if (image == null) return;
+    Map<Object?, Object?> result = await ImageGallerySaver.saveImage(image);
+    if(result['isSuccess'] != null && result['isSuccess'] as bool){
+      nativeToast.showToast(ToastData.success(message: 'file saved: ${result['filePath']}'));
+      logger.i(result['filePath']);
+    }else{
+      nativeToast.showToast(ToastData.success(message: 'qr did not save'));
+    }
   }
 
   void qrAmountBottomSheet() {
@@ -82,31 +93,17 @@ class MyQrProvider extends BaseViewModel {
   List<BankDataResp> _getDummyData() {
     return <BankDataResp>[
       BankDataResp(
-          icon: '', url: '', bankId: '', name: 'Ib Bank', iosAppId: '', iosId: '', androidId: ''),
+          icon: '', url: BankLogoAsset.ib, bankId: '', name: 'Ib Bank', iosAppId: '', iosId: '', androidId: ''),
       BankDataResp(
-          icon: '', url: '', bankId: '', name: 'Bic Bank', iosAppId: '', iosId: '', androidId: ''),
+          icon: '', url: BankLogoAsset.bic, bankId: '', name: 'Bic Bank', iosAppId: '', iosId: '', androidId: ''),
       BankDataResp(
-          icon: '', url: '', bankId: '', name: 'Sbi Bank', iosAppId: '', iosId: '', androidId: ''),
+          icon: '', url: BankLogoAsset.bankOfChina, bankId: '', name: 'Bank of china', iosAppId: '', iosId: '', androidId: ''),
       BankDataResp(
-          icon: '', url: '', bankId: '', name: 'PNB Bank', iosAppId: '', iosId: '', androidId: ''),
+          icon: '', url: BankLogoAsset.bcel, bankId: '', name: 'Bcel', iosAppId: '', iosId: '', androidId: ''),
       BankDataResp(
-          icon: '',
-          url: '',
-          bankId: '',
-          name: 'Indian Bank',
-          iosAppId: '',
-          iosId: '',
-          androidId: ''),
+          icon: '', url: BankLogoAsset.ldb, bankId: '', name: 'LDB', iosAppId: '', iosId: '', androidId: ''),
       BankDataResp(
-          icon: '',
-          url: '',
-          bankId: '',
-          name: 'ICICI Bank',
-          iosAppId: '',
-          iosId: '',
-          androidId: ''),
-      BankDataResp(
-          icon: '', url: '', bankId: '', name: 'KUCB Bank', iosAppId: '', iosId: '', androidId: ''),
+          icon: '', url: BankLogoAsset.vietinBank, bankId: '', name: 'Vietin Bank', iosAppId: '', iosId: '', androidId: ''),
     ];
   }
 
@@ -115,6 +112,10 @@ class MyQrProvider extends BaseViewModel {
   bool _skipMultipleTap = true;
 
   void shareImage(GlobalKey repaintKey) async {
+    if(_bankDataResp == null){
+      nativeToast.showToast(ToastData.warning(message: 'please select bank'));
+      return;
+    }
     if (_skipMultipleTap) {
       _skipMultipleTap = false;
       var qrToImage = await _qrToImage(repaintKey);

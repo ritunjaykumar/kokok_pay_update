@@ -100,10 +100,10 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const ResultTransferScreen());
       case Routes.cardScreen:
         return MaterialPageRoute(builder: (_) => const CardScreen());
-      case Routes.transferScreen:
-        return MaterialPageRoute(builder: (_) => const TransferScreen());
-      case Routes.edlScreen:
-        return MaterialPageRoute(builder: (_) => const EdlScreen());
+      /*case Routes.transferScreen:
+        return MaterialPageRoute(builder: (_) => const TransferScreen());*/
+      /*case Routes.edlScreen:
+        return MaterialPageRoute(builder: (_) => const EdlScreen());*/
       case Routes.resultEdlScreen:
         return MaterialPageRoute(builder: (_) => const ResultEdlScreen());
       case Routes.supportScreen:
@@ -124,6 +124,8 @@ class RouteResource {
       Routes.confirmUserRegisterScreen: (_) => const ConfirmationUserRegisterScreen(),
       Routes.pinRegisterScreen: (_) => const PinRegisterScreen(),
       Routes.userDetailsScreen: (_) => const UserDetailsScreen(),
+      Routes.edlScreen: (_) => const EdlScreen(),
+      Routes.transferScreen: (_) => const TransferScreen(),
     };
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
 import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/dashboard/home/home_provider.dart';
+import 'package:kokok_pay/screens/dashboard/more/more_provider.dart';
 import 'package:kokok_pay/screens/dashboard/more/more_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,8 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
         children: [
           Column(
             children: [
-              _topPartWidget(),
+              // _topPartWidget(),
+              _cardUi(),
               // const MoreScreen(),
               Expanded(child: _bottomPartWidget()),
             ],
@@ -94,12 +96,6 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
           // const SizedBox(height: 20),
           Row(
             children: [
-              /*Text(
-                'Hello',
-                style: textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onPrimary,
-                ),
-              ),*/
               const SizedBox(width: 10),
               Text(
                 'Hello  Mr. Inpone',
@@ -110,12 +106,6 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
               ),
             ],
           ),
-          // Text(
-          //   'Available Balance',
-          //   style: textTheme.bodyMedium?.copyWith(
-          //     color: colorScheme.onPrimary,
-          //   ),
-          // ),
           Consumer<HomeProvider>(
             builder: (ctx, homeProvider, child) {
               return Row(
@@ -151,44 +141,6 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
             },
           ),
           const SizedBox(height: 6),
-          /* Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(Routes.qrScreen);
-                  },
-                  label: const Text('My Qr'),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(colorScheme.primaryContainer),
-                    foregroundColor: MaterialStatePropertyAll<Color>(colorScheme.primary),
-                  ),
-                  icon: Image.asset(
-                    ImagesFile.scanQr,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () {},
-                  label: const Text('Add Money'),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(colorScheme.primaryContainer),
-                    foregroundColor: MaterialStatePropertyAll<Color>(colorScheme.primary),
-                  ),
-                  icon: Image.asset(
-                    ImagesFile.addMoney,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-              ),
-            ],
-          ),*/
         ],
       ),
     );
@@ -203,8 +155,8 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
       decoration: BoxDecoration(
         color: colorScheme.background,
         borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(32),
-          topLeft: Radius.circular(32),
+          topRight: Radius.circular(22),
+          topLeft: Radius.circular(22),
         ),
       ),
       child: Column(
@@ -310,5 +262,94 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
 
   Color _getColor(String type) {
     return type == 'sent' ? Colors.red : Colors.green;
+  }
+
+  Widget _cardUi() {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    Widget getCardUiItem(MenuItemData menuItemData) {
+      return InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed(menuItemData.path!);
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircleAvatar(child: Icon(menuItemData.icon)),
+              const SizedBox(height: 4),
+              Text(menuItemData.title),
+            ],
+          ),
+        ),
+      );
+    }
+
+    Widget getBottomCardUi(String title, IconData icon, String path) {
+      return InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed(path);
+        },
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+          child: Row(
+            children: [
+              // CircleAvatar(child: Icon(icon)),
+              Icon(
+                icon,
+                color: Colors.black,
+              ),
+              const SizedBox(width: 12),
+              Text(title),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Card(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Mr. Inpone', style: textTheme.titleMedium),
+                  Text(
+                    '₭ 723.647.236.4',
+                    style: textTheme.bodyLarge?.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children:
+                  context.read<HomeProvider>().menuItems.map((e) => getCardUiItem(e)).toList(),
+            ),
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                getBottomCardUi('Favorite', Icons.favorite, Routes.favoriteScreen),
+                getBottomCardUi('Support', Icons.support_agent,Routes.supportScreen),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

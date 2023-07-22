@@ -1,15 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/base/base_view_model.dart';
+import 'package:kokok_pay/screens/dashboard/more/more_provider.dart';
 
 class HomeProvider extends BaseViewModel {
   HomeProvider(super.context);
 
   final double _amount = 88778787;
   bool _isAmountHidden = true;
+  late List<MenuItemData> _menuItems;
 
   final List<TransactionData> _transactionData = [];
 
+  @override
   void init() {
     _transactionsData();
+    _initMenuItems();
   }
 
   void amountHiddenToggle() {
@@ -34,6 +40,20 @@ class HomeProvider extends BaseViewModel {
       TransactionData('txnId', 9835, '₭', 'Bounkhong', 'sent', '2023-05-13 12:23 am'),
     ]);
   }
+  void _initMenuItems() {
+    _menuItems = <MenuItemData>[
+      MenuItemData(title: 'Transfer', icon: Icons.send, path: Routes.transferScreen),
+      MenuItemData(title: 'Wallet', icon: Icons.wallet, path: Routes.walletScreen),
+      MenuItemData(title: 'My Cards', icon: Icons.credit_card, path: Routes.cardScreen),
+      MenuItemData(title: 'EDL', icon: Icons.electric_bolt, path: Routes.edlScreen),
+    ];
+  }
+
+  ///
+  /// MenuItemData(title: 'Favorite', icon: Icons.favorite_border, path: Routes.favoriteScreen),
+  //       MenuItemData(title: 'Support', icon: Icons.support_agent, path: Routes.supportScreen),
+
+  List<MenuItemData> get menuItems => _menuItems;
 
   List<TransactionData> get transactionData => _transactionData;
 

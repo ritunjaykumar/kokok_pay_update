@@ -1,6 +1,7 @@
 const String _lottieDir = 'assets/lottie/';
 const String _resourceDir = 'assets/resource/';
 const String _imageDir = 'assets/images/';
+const String _bankDir = 'assets/bank/';
 
 class LottieFile {
   static const String progressLottie = '${_lottieDir}progress_lottie.json';
@@ -43,4 +44,14 @@ class ImagesFile {
   static const String electricity = '${_imageDir}electricity.png';
 
 
+}
+
+
+class BankLogoAsset{
+  static const String bankOfChina = '${_bankDir}bank_of_china.png';
+  static const String bcel = '${_bankDir}bcel.png';
+  static const String bic = '${_bankDir}bic.png';
+  static const String ib = '${_bankDir}ib.png';
+  static const String ldb = '${_bankDir}ldb.png';
+  static const String vietinBank = '${_bankDir}vietin_bank.png';
 }

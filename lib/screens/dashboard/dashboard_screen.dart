@@ -62,8 +62,8 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
             ),
           ),
         ),
-        actions: [
-          /*Padding(
+       /* actions: [
+          Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: Badge(
               label: const Text('34'),
@@ -79,7 +79,7 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
                 ),
               ),
             ),
-          ),*/
+          ),
           PopupMenuButton<String>(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             icon: const Icon(Icons.menu),
@@ -97,7 +97,7 @@ class _DashboardScreenMainState extends State<_DashboardScreenMain> {
               ).toList();
             },
           ),
-        ],
+        ],*/
       ),
       body: Consumer<DashboardProvider>(
         builder: (ctx, dashboardProvider, child) {

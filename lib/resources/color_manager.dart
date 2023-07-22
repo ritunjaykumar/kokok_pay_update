@@ -15,7 +15,7 @@ class ColorResource {
   static const Color lightPrimary = Color(0xFF4355B9); //surfaceTint
   static const Color lightPrimaryContainer = Color(0xFFDEE0FF);
   static const Color onLightPrimaryContainer = Color(0xFF301400);
-  static const Color lightSecondary = Color(0xFFF68623);
+  static const Color lightSecondary = Color(0xFF004E5C);
   static const Color lightSecondaryContainer = Color(0xFFFFDCC5);
   static const Color onLightSecondaryContainer = Color(0xFF000964);
   static const Color lightTertiary = Color(0xFF006A62);

@@ -13,10 +13,23 @@ class TransferScreen extends StatefulWidget {
 }
 
 class _TransferScreenState extends State<TransferScreen> {
+  bool isFirstTime = true;
+  late String? consId;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (isFirstTime) {
+      consId = ModalRoute.of(context)?.settings.arguments as String?;
+      print('consId: $consId');
+      isFirstTime = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TransferProvider>(
-      create: (ctx) => TransferProvider(context)..init(),
+      create: (ctx) => TransferProvider(context, consId)..init(),
       child: const _TransferScreenMain(),
     );
   }
@@ -51,6 +64,12 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
     super.dispose();
     _mobileNumberController.dispose();
     _amountController.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _mobileNumberController.text = context.read<TransferProvider>().consI ?? '';
   }
 
   @override
@@ -194,8 +213,7 @@ class _TransferScreenMainState extends State<_TransferScreenMain> {
                         TextField(
                           controller: _descriptionController,
                           decoration: const InputDecoration(
-                              hintText: 'enter description',
-                              prefixIcon: Icon(Icons.description)),
+                              hintText: 'enter description', prefixIcon: Icon(Icons.description)),
                           keyboardType: TextInputType.text,
                         ),
                       ],

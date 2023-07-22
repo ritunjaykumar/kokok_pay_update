@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/favorite/favorite_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -120,7 +121,15 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
     const double width = 60;
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () {},
+      onTap: () {
+        String route;
+        if (recentTxnData.type == 'wallet') {
+          route = Routes.transferScreen;
+        } else {
+          route = Routes.edlScreen;
+        }
+        Navigator.of(context).pushNamed(route, arguments: recentTxnData.id);
+      },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -153,7 +162,7 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
               )} ${recentTxnData.name.length > 8 ? '..' : ''}',
               style: textTheme.titleSmall,
             ),
-            Text(recentTxnData.txnType, style: textTheme.bodySmall),
+            Text(recentTxnData.type, style: textTheme.bodySmall),
           ],
         ),
       ),
@@ -185,11 +194,20 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
                 favoriteData.selected = checked!;
                 setState(() {});
               })
-          : IconButton(
+          : const Icon(Icons.arrow_forward_ios_sharp, size: 18,),/*IconButton(
               onPressed: () {},
               icon: const Icon(Icons.payments),
-            ),
+            ),*/
       onLongPress: select ? null : callback,
+      onTap: () {
+        String route;
+        if (favoriteData.type == 'wallet') {
+          route = Routes.transferScreen;
+        } else {
+          route = Routes.edlScreen;
+        }
+        Navigator.of(context).pushNamed(route, arguments: favoriteData.consId);
+      },
     );
   }
 }

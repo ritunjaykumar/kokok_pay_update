@@ -13,10 +13,23 @@ class EdlScreen extends StatefulWidget {
 }
 
 class _EdlScreenState extends State<EdlScreen> {
+  bool isFirstTime = true;
+  late String? consId;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (isFirstTime) {
+      consId = ModalRoute.of(context)?.settings.arguments as String?;
+      print('consId: $consId');
+      isFirstTime = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<EdlProvider>(
-      create: (ctx) => EdlProvider(context)..init(),
+      create: (ctx) => EdlProvider(context, consId)..init(),
       child: const _EdlScreenMain(),
     );
   }
@@ -35,6 +48,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
 
   // final Color color = const Color(0xff55b5e1);
   final GlobalKey<FormState> _formKey = GlobalKey();
+  final TextEditingController _consIdController = TextEditingController();
   String zone = 'North';
   String amount = '0';
   String description = '';
@@ -45,6 +59,18 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
   //   search = true;
   //   setState(() {});
   // }
+
+  @override
+  void initState() {
+    super.initState();
+    _consIdController.text = context.read<EdlProvider>().consId ?? '';
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _consIdController.dispose();
+  }
 
   void validateForm() {
     var validate = _formKey.currentState!.validate();
@@ -72,7 +98,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
         children: [
           Image.asset(
             ImagesFile.edlBanner,
-            height: 200,
+            height: 150,
             width: double.infinity,
             fit: BoxFit.fill,
           ),
@@ -117,6 +143,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                             const SizedBox(height: 12),
                             const Text('Bill Number'),
                             TextFormField(
+                              controller: _consIdController,
                               readOnly: search,
                               decoration: InputDecoration(
                                 hintText: 'Please Enter Bill Number',
@@ -128,6 +155,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                                       ),
                               ),
                               keyboardType: TextInputType.number,
+                              textInputAction: TextInputAction.search,
                               validator: (billNumber) {
                                 if (billNumber == null || billNumber.isEmpty) {
                                   return 'Please enter Bill number';
@@ -182,8 +210,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                             children: [
                               Text(
                                 'Bill Details',
-                                style:
-                                    textTheme.titleMedium?.copyWith(color: colorScheme.primary),
+                                style: textTheme.titleMedium?.copyWith(color: colorScheme.primary),
                               ),
                               const SizedBox(height: 8),
                               _billInfoWidget('Bill Number', billNumber),
