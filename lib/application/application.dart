@@ -173,6 +173,10 @@ Future<void> _initPushNotification() async {
     String? token = value;
     FirebaseInfo firebaseInfo = FirebaseInfo(token.notNull());
     instance.registerSingleton<FirebaseInfo>(firebaseInfo);
+  }).onError((error, stackTrace) {
+    FirebaseInfo firebaseInfo = const FirebaseInfo('');
+    instance.registerSingleton<FirebaseInfo>(firebaseInfo);
+    print('error  : $error');
   });
 }
 

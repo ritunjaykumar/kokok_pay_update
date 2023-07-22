@@ -102,6 +102,190 @@ const String termConditionData = '''
         able to examine such limitation from
         https://support.Kok2pay.com/knowledge-base/credit_limit/. However, the Company is entitled to modify such
         limitation at any time by giving prior notice to the Customer. </p>
+      <p> 2.17 The Company reserves the right to change the criteria for the consideration, approval and limitation of
+        number of the Wallet per 1 (one) identification card number or passport number, as the Company deems appropriate
+        without the need to notify the Customer about the reason. </p>
+      <p> 2.18 The Customer acknowledges that the Customer shall not be able to conduct any transaction with the
+        Customer's Wallet for the following events: </p>
+      <p> 2.18.1 The Customer's mobile phone number, registered with the Company, has been suspended. The Customer shall
+        not be able to conduct any transaction with the Customer's Wallet until the service suspension ends; or </p>
+      <p> 2.18.2 The Customer has changed the mobile phone number registered with the Company, or has canceled the use
+        of registered mobile phone number, or such mobile phone number has been terminated for any reason whatsoever.
+        For such events as abovementioned, the Customer acknowledges that the Customer must transfer Money out of the
+        Customer's Wallet before changing the mobile phone number, or before the suspension or termination of such
+        mobile phone number and Wallet closure, otherwise, the Company shall not be responsible for any damage possibly
+        occurring to the Customer. </p>
+      <p> 2.19 The Customer can find the information regarding transaction history conducted for last 3 (three) months
+        through the Application in "History" section. Additionally, the Customer can request for such information within
+        the period of time as specified by the Company via Kok2 Customer Care or any other channels as specified by the
+        Company. In this regard, the Customer shall receive the evidence of transaction via the Application in "History"
+        section and notification from the Application which will appear on the Customer's device (Push Notification).
+        The evidence of transaction means the statement and any other evidence made by computer and data storage device
+        or any other storage devices used for recording data or any other evidences as specified by the Bank of Lao in
+        the future. The evidence of transaction shall be deemed as confidential information in which the Customer should
+        not disclose to third persons. </p>
+      <p> 2.20 The Customer can ask for the service information and/or notify about the problems in connection with the
+        use of Services at Kok2 Customer Care or any other channels as specified by the Company. </p>
+      <h3 style="font-weight: bold;">3. Terms and Conditions of Using Source of Funds on Application</h3>
+      <p class="ion-text-justify"> 3.1 The Customer must have Kokkok2Pay Wallet before binding any Source of Funds to
+        Customer's Wallet. In this regard, the Company reserves the right to provide the Services only for certain types
+        of Source of Funds as specified by the Company. </p>
+      <p> 3.2 The Customer agrees and acknowledges that in order to facilitate the use of Services by Customer, once the
+        Customer has bound Source of Funds to the Customer's Wallet, the Company may access to the Customer's Source of
+        Funds information and display such information on Application or any other channel as specified by the Company.
+        3.3 The Company reserves the right to limit number of Source of Funds which the Customer shall be able to bind
+        to the Customer's Wallet as the followings: <li>Credit/debit card not exceed 1 (one) cards per 1 (one) Wallet.
+        </li>
+        <li> Bank wallet not exceed 1 (five) wallet per 1 (one) Wallet. </li>
+        <li>Other Mobile wallet not exceed 2 (two) wallet per 1 (one) Wallet.</li>
+      </p>
+      <p> In this regard, the Company reserves the right to change the limitation of number of Source of Funds' wallets
+        which the Customer shall be able to bind to the Customer's Wallet with the prior notice to the Customer. </p>
+      <p> 3.4 For using this Source of Funds service, the Customer has no duty to pay any Service fees to the Company.
+        However, when the Customer binds some Source of Funds such as credit/debit card for the first time, the banks or
+        financial institutions or the credit/debit card providers may try deducting money from the Customer's
+        credit/debit card and immediately refund such money to the Customer without any cost and expense. </p>
+          
+      <p> In providing the Services by the Company, it shall not be deemed that the Company (a) provides direct money
+        transfer service to the Customer and/or (b) acts as trustee, custodian or administrator for Customer's money. In
+        case of any problem arising due to the use of money in any Source of Funds bound to the Customer's Wallet, then
+        the Customer shall contact the banks or the financial institutions or credit/debit/electronic card providers or
+        loan credit provider and/or solve such problem by himself/herself. The Company shall not involve in any case.
+      </p>
+      <h3>4. Termination of the Use of Services, Termination and Suspension of the Provision of Services.</h3>
+      <p>
+        4.1 In
+        case the Customer wishes to terminate the use of Services, then the Customer is entitled to proceed as follows:
+      </p>
+     
+
+      <p>
+        4.2.1 The Customer uses forged document, or expresses false statement in the registration applying for the
+        Wallet, including gives false information or provide false documentary evidence or incompletely express the
+        document as requested by the Company; or.
+      </p>
+      <p>
+        4.2.2 The Customer has died; or. 4.2.3 The Customer is the person whom the government or state authority imposes
+        the seizure or garnishment order, or is the designated person, or is alleged or suspected as the person
+        committing the offense; or.
+      </p>
+      <p>
+        4.2.4 The Company has reasonable suspicion that the Customer has committed the offense, or attempts to commit
+        the offense as prescribed by the laws, or do any action possibly causing damage to the Company or any person;
+        or.
+      </p>
+    
+
+      <p> 12. No Waiver. The failure by the Company to enforce any term or condition of these Terms of Services shall in no way affect the right of the Company to enforce the same, and no waiver of a breach of any term or condition of these Terms of Services by the Customer shall be construed as an agreement to waive any subsequent breach of the same or other term or condition. </p>
+    </div>
+  </div>
+</div>
+''';
+/*
+const String termConditionData = '''
+<div  style="text-align: justify;">
+      <p style="text-align: center;">Terms & Conditions Agreement</p>
+  <div>
+    <div class="ion-text-wrap">
+      <h3>TERMS OF USE</h3>
+      <p  style="text-align: justify;">These Terms of Services of KokkokPay (hereinafter called as the "<b>Terms of Services</b>") is an agreement
+        between KokKok solution Limited and Kokkok Pay customer (hereinafter called as the "<b>Customer</b>") of the
+        other part; for the use of KokkokPay services (hereinafter called as the "<b>Service(s)</b>"). In this regard,
+        the Customer can conduct the financial transaction by using the Company's electronic money (hereinafter called
+        as the "<b>Money</b>"),debit card bound to the Customer's Wallet, including top-up, pay, transfer and withdraw
+        via KokkokPay application, (hereinafter called as the "<b>Application</b>") or via the Company's Prepaid Card,
+        such as IB prepaid card or any other cards jointly issued by the Company and any other juristic persons. The
+        Customer has the duty to thoroughly make understanding before using the Services, and to observe the Terms of
+        Services regularly. If there is any question regarding the Services, the Customer can contact Kokkok Customer
+        Care, or any other channels as specified by the Company. </p>
+    </div>
+  </div>
+  <div lines="none">
+    <div class="ion-text-wrap">
+      <h3 style="font-weight: bold;">1. General Provisions</h3>
+      <p class="ion-text-justify"> 1.1 The Customer agrees to comply and be bound by these Terms of Services. The use of
+        Services shall be deemed as the acceptance of these Terms of Services. The Company may make amendment or
+        addition to these Terms of Services, at any time by notifying the Customer. Additionally, by using the Services
+        after the amendment or addition shall be deemed as the acceptance of such amendment or addition for each time
+      </p>
+      <p> 1.2 Unless otherwise notified or specified, any new characteristic amended, added or improved on the Services
+        shall be under these Terms of Services. </p>
+      <p> 1.3 At any time, the Company reserves the right to improve or cancel the Services or any part of the Services,
+        whether temporarily or permanently, upon prior notice by the Company. However, such suspension or cancellation
+        shall not affect any debt that the Customer owes to the Company and shall not prejudice any right or
+        responsibility between the Company and the Customer which incurs or has incurred before the date of such
+        suspension or cancellation. </p>
+      <h3 style="font-weight: bold;">2. General Use of Service</h3>
+      <p class="ion-text-justify"> <span class="bullet">2.1</span> In applying for the use of Services, the Customer
+        must open Kok2 Pay Wallet (hereinafter called as the "Wallet") for conducting the transactions in connection
+        with the use of Services. In this regard, the Customer must perform as follows: </p>
+      <p>2.1.1 The Customer holding Lao nationality must fill in his/her name, family name, email, mobile phone number,
+        address, occupation, workplace, date-month-year of birth and the identification card number, as well as, any
+        other information as specified or to be specified further by the Company in compliance with the Company's
+        purpose of providing Service and/or the relevant laws.</p>
+      <p> 2.1.2 The Customer holding any nationalities other than Lao (hereinafter called as the "Foreign Customer")
+        must fill in the type of visa for residing in Lao, place of residence in Lao, electronic signature, copy of
+        passport having validity period of more than 6 (six) months, as well as, any other information as specified or
+        to be specified further by the Company in compliance with the Company's purpose of providing Service and/or the
+        relevant laws. Upon the Customer having filled in the information above, the Customer must set letter,
+        character, number, sound, symbol or biometric data as specified by the Company (hereinafter called as the
+        "Password"). The Password can be changed thereafter by himself/herself in accordance with the Company's terms
+        and conditions. The Company reserves the right to refuse the opening of the use of Services, provision of
+        Services and/or transaction conduction with the Customer, who conceals the true name or uses fictitious name, or
+        upon the Company having detected that the Customer's registered name is not true, correct and be present. The
+        Company reserves the right to provide certain type of Service to certain type of Customer as specified by the
+        Company. In addition, in case that the Customer is the Foreign Customer, the Company reserves the right to
+        refuse the opening of the use of Services, provision of Services and/or transaction conduction with the
+        Customer, who has nationality, place of residence or some occupations as specified by the Company. In this
+        regard, the Customer agrees and accepts that the consideration and approval of the application for the use of
+        Services and provision of certain type of Service shall be in the sole discretion of the Company. </p>
+      <p> 2.2 The Customer shall keep the Password and the information used in the application for the use of Services
+        in private and confidential, and shall not disclose or do any action which may make any other person know the
+        Password and/or such information. The Customer agrees that any transaction, which has been conducted using the
+        Customer's Password, shall be deemed as the Customer's own action in all respects. In this regard, the Company
+        shall not be responsible for any damage occurring from any transaction conducted under the Customer's Wallet due
+        to the use of such Password. </p>
+      <p> 2.3 In case the Customer uses the Password for conducting and completion of any transaction in connection with
+        the use of Services, then, the Customer shall agree that it cannot cancel, revoke, change or amend such
+        transaction, and in which the Customer shall be bound in accordance with such transaction in all respects. </p>
+      <p> 2.4 The Customer can use the Password for the Services of payment for the price of goods and/or service fees,
+        as well as, for conducting financial and banking transactions and/or any other transactions in which the Company
+        may expand the scope of service provision in the future..In this regard </p>
+      <p> 2.5 The Customer acknowledges that, in using the Services, if the Password has been entered consecutively for
+        number of times more than those as specified by the Company, then, the Company shall immediately suspend the use
+        of Service. The Customer shall be able to use the Services upon notifying the Company of its intentions to
+        request for new Password in accordance with the method as specified by the Company. </p>
+      <p> 2.6 In case the Customer forgot the Password or wishes to change the Password for any reason whatsoever, in
+        such case, the Customer shall immediately notify the Company in accordance with the method as specified by the
+        Company. However, the action above shall not affect any transaction already conducted prior to the notification
+        to the Company. </p>
+      <p> 2.7 The Customer agrees to pay the Services fees at the rates as specified by the Company. In this regard, the
+        Customer can check fee rates at https://www.Kokkokpay.com/rates/.
+        The Company reserves the right to change the fee rates at any time upon prior notice by the Company..In the
+        event that the Customer has to pay any Service fees to the Company as aforementioned, the Customer hereby allows
+        the Company to deduct such Service fees on the due date immediately and the Customer agrees to maintain the
+        balance of wallet in the Customer's Wallet to be sufficient for such deduction. </p>
+      <p> 2.8 In addition to the balance in the Customer's Wallet, the Customer shall be able to conduct financial
+        transactions via other source of fund by binding the Customer's Wallet to such other source of fund as specified
+        by the Company (hereinafter called as the "Source of Funds"), including but not limited to credit card, debit
+        card, electronic card, bank wallet (automatically money deduction from bank wallet or direct debit), loan credit
+        and etc. In this regard, the terms of service for each Source of Funds shall be as specified in Clause 4 of this
+        Terms of Services including any specific term to be specified by the Company in the future. </p>
+      <p> 2.9 The Customer can conduct the payment transaction for price of goods and/or services at the amount not less
+        than the minimum amount or exceed the maximum amount per transaction, per day, and per month as stipulated by
+        the Company. The Customer shall be able to examine such limitation at
+        https://www.Kokkokpay.com/limitpayment/terms-conditions-en. In this regard, the Company shall be entitled
+        to modify such limitation at any time by giving prior notice to the Customer. </p>
+      <p> 2.10 For Customer holding Lao nationality, in addition to Clause 2.9 above, the Customer can use the payment
+        service for price of goods and/or services, including conducting financial transaction through the Customer's
+        Wallet not exceeding the specified amount per transaction, per day, and per month, subject to the level of
+        identity verification shown in "Wallet" section on Application. For Foreign Customer, in addition to Clause 2.9
+        above, the Customer can use the payment service for price of goods and/or services, including conducting
+        financial transaction through the Customer's Wallet not exceeding the specified amount per transaction, per day,
+        and per month, subject to the level of identity verification submitted to the Company..The Customer shall be
+        able to examine such limitation from
+        https://support.Kok2pay.com/knowledge-base/credit_limit/. However, the Company is entitled to modify such
+        limitation at any time by giving prior notice to the Customer. </p>
       <p> 2.11 The Company reserves the right to refuse the transaction conduction of payment or collection for price of
         goods and/or service fees as follows: </p>
       <p> 2.11.1 Payment or collection for price of goods and/or service fees on behalf of any other juristic person or
@@ -338,7 +522,6 @@ const String termConditionData = '''
       </p>
 
 
-
       <h3>5. Customer's Warranty.</h3>
       <p>
         5.1 For the
@@ -549,3 +732,6 @@ const String termConditionData = '''
   </div>
 </div>
 ''';
+
+*
+* */
