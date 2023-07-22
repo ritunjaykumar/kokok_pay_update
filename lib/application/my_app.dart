@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
             themeMode: ThemeMode.light,
             onGenerateRoute: RouteResource.getGeneratedRoutes,
             routes: RouteResource.getStaticRoute(context),
-            initialRoute: Routes.splashScreen,
-            // initialRoute: Routes.dashboardScreen,
+            // initialRoute: Routes.splashScreen,
+            initialRoute: Routes.dashboardScreen,
             themeAnimationCurve: Curves.easeIn,
             themeAnimationDuration: const Duration(seconds: 1),
             onUnknownRoute: (RouteSettings routeSetting) {

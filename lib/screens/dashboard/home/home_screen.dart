@@ -56,6 +56,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
             children: [
               // _topPartWidget(),
               _cardUi(),
+              ///
               // const MoreScreen(),
               Expanded(child: _bottomPartWidget()),
             ],

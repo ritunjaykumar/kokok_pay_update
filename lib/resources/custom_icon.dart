@@ -10,4 +10,9 @@ class CustomIcon {
     fontFamily: _kFontFam,
     fontPackage: _kFontPkg,
   );
+  static const IconData bill = IconData(
+    0xe800,
+    fontFamily: 'Bill',
+    fontPackage: _kFontPkg,
+  );
 }

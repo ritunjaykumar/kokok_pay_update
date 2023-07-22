@@ -159,6 +159,9 @@ flutter:
     - family: FaceIcon
       fonts:
         - asset: assets/icons/FaceIcon.ttf
+    - family: Bill
+      fonts:
+        - asset: assets/icons/Bill.ttf
 
   #
   # For details regarding fonts from package dependencies,
