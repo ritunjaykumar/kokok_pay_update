@@ -335,7 +335,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                 getItem('Top up', Routes.topupScreen, UtilLogo.unitel),
                 getItem('EDL', Routes.edlScreen, UtilLogo.edl, {'provider': 'edl'}),
                 getItem('Nam Papa', Routes.edlScreen, UtilLogo.nampapa, {'provider': 'nampapa'}),
-                getItem('Insurance',' Routes.edlScreen', UtilLogo.insurance),
+                getItem('Insurance',Routes.insuranceScreen, UtilLogo.insurance),
                 getItem('Leasing', 'Routes.edlScreen', UtilLogo.leasing),
                 getItem('Tax', '', UtilLogo.tax),
                 const SizedBox(height: 18),

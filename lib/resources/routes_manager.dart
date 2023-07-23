@@ -3,6 +3,7 @@ import 'package:kokok_pay/screens/card/card_screen.dart';
 import 'package:kokok_pay/screens/dashboard/dashboard_screen.dart';
 import 'package:kokok_pay/screens/edl/edl_screen.dart';
 import 'package:kokok_pay/screens/favorite/favorite_screen.dart';
+import 'package:kokok_pay/screens/insurance/insurance_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_amount_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 import 'package:kokok_pay/screens/result/edl/result_edl_screen.dart';
@@ -60,6 +61,7 @@ class Routes {
   static const String favoriteScreen = 'favoriteScreen';
   static const String topupScreen = 'topupScreen';
   static const String topupResultScreen = 'topupResultScreen';
+  static const String insuranceScreen = 'insuranceScreen';
 }
 
 class RouteResource {
@@ -108,8 +110,8 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const TransferScreen());*/
       /*case Routes.edlScreen:
         return MaterialPageRoute(builder: (_) => const EdlScreen());*/
-      /* case Routes.resultEdlScreen:
-        return MaterialPageRoute(builder: (_) => const ResultEdlScreen());*/
+       case Routes.insuranceScreen:
+        return MaterialPageRoute(builder: (_) => const InsuranceScreen());
       case Routes.supportScreen:
         return MaterialPageRoute(builder: (_) => const SupportScreen());
       case Routes.favoriteScreen:
