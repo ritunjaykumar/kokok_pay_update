@@ -6,6 +6,7 @@ import 'package:kokok_pay/screens/favorite/favorite_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_amount_screen.dart';
 import 'package:kokok_pay/screens/qr/qr_screen/qr_screen.dart';
 import 'package:kokok_pay/screens/result/edl/result_edl_screen.dart';
+import 'package:kokok_pay/screens/result/topup/topup_result_screen.dart';
 import 'package:kokok_pay/screens/result/transfer/result_transfer_screen.dart';
 import 'package:kokok_pay/screens/scanner/details/scanner_detail_screen.dart';
 import 'package:kokok_pay/screens/scanner/qr_scanner_screen.dart';
@@ -58,6 +59,7 @@ class Routes {
   static const String supportScreen = 'supportScreen';
   static const String favoriteScreen = 'favoriteScreen';
   static const String topupScreen = 'topupScreen';
+  static const String topupResultScreen = 'topupResultScreen';
 }
 
 class RouteResource {
@@ -106,7 +108,7 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const TransferScreen());*/
       /*case Routes.edlScreen:
         return MaterialPageRoute(builder: (_) => const EdlScreen());*/
-     /* case Routes.resultEdlScreen:
+      /* case Routes.resultEdlScreen:
         return MaterialPageRoute(builder: (_) => const ResultEdlScreen());*/
       case Routes.supportScreen:
         return MaterialPageRoute(builder: (_) => const SupportScreen());
@@ -131,6 +133,7 @@ class RouteResource {
       Routes.edlScreen: (_) => const EdlScreen(),
       Routes.transferScreen: (_) => const TransferScreen(),
       Routes.resultEdlScreen: (_) => const ResultEdlScreen(),
+      Routes.topupResultScreen: (_) => const TopupResultScreen(),
     };
   }
 }

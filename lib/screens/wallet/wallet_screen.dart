@@ -171,6 +171,9 @@ class _WalletScreenMainState extends State<_WalletScreenMain> {
         context: context,
         builder: (ctx) {
           return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12)
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

@@ -21,6 +21,7 @@ class _EdlScreenState extends State<EdlScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (isFirstTime) {
+      print('value: ${ModalRoute.of(context)?.settings.arguments}');
       Map<String, String> routeData =
           ModalRoute.of(context)?.settings.arguments as Map<String, String>;
       screenType = routeData['provider'] ?? '';

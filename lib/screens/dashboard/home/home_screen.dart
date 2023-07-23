@@ -4,6 +4,8 @@ import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/dashboard/home/home_provider.dart';
 import 'package:kokok_pay/screens/dashboard/more/more_provider.dart';
 import 'package:kokok_pay/screens/dashboard/more/more_screen.dart';
+import 'package:kokok_pay/screens/painter/background_painter.dart';
+import 'package:kokok_pay/screens/painter/qr_screen_painter.dart';
 import 'package:kokok_pay/screens/widgets/widget/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -323,16 +325,19 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
         builder: (ctx) {
           return Dialog(
             insetPadding: const EdgeInsets.all(24),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12)
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const DialogAppbar(title: 'Select Option'),
                 getItem('Top up', Routes.topupScreen, UtilLogo.unitel),
-                getItem('Edl', Routes.edlScreen, UtilLogo.edl, {'provider': 'edl'}),
-                getItem('Nampapa', Routes.edlScreen, UtilLogo.nampapa, {'provider': 'nampapa'}),
-                getItem('Insurance', Routes.edlScreen, UtilLogo.nampapa),
-                getItem('Leasing', Routes.edlScreen, UtilLogo.nampapa),
-                getItem('Tax', '', UtilLogo.nampapa),
+                getItem('EDL', Routes.edlScreen, UtilLogo.edl, {'provider': 'edl'}),
+                getItem('Nam Papa', Routes.edlScreen, UtilLogo.nampapa, {'provider': 'nampapa'}),
+                getItem('Insurance',' Routes.edlScreen', UtilLogo.insurance),
+                getItem('Leasing', 'Routes.edlScreen', UtilLogo.leasing),
+                getItem('Tax', '', UtilLogo.tax),
                 const SizedBox(height: 18),
               ],
             ),

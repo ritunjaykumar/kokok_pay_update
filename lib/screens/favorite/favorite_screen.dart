@@ -127,9 +127,12 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
         if (recentTxnData.type == 'wallet') {
           route = Routes.transferScreen;
           args = recentTxnData.id;
-        } else {
+        } else if(recentTxnData.type == 'edl') {
           route = Routes.edlScreen;
           args = {'provider': 'edl', 'consId': recentTxnData.id};
+        } else {
+          route = Routes.edlScreen;
+          args = {'provider': 'num papa', 'consId': recentTxnData.id};
         }
         Navigator.of(context).pushNamed(route, arguments: args);
       },
@@ -178,7 +181,7 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
         return Icons.wallet;
       } else if (favoriteData.type == 'edl') {
         return Icons.electric_bolt_outlined;
-      } else if (favoriteData.type == 'water') {
+      } else if (favoriteData.type == 'num papa') {
         return Icons.water_drop;
       } else {
         return Icons.favorite;
@@ -196,24 +199,24 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
               onChanged: (checked) {
                 favoriteData.selected = checked!;
                 setState(() {});
-              })
-          : const Icon(
-              Icons.arrow_forward_ios_sharp,
-              size: 18,
-            ),
-      /*IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.payments),
-            ),*/
+              },
+            )
+          : const Icon(Icons.arrow_forward_ios_sharp, size: 18),
       onLongPress: select ? null : callback,
       onTap: () {
         String route;
+        dynamic args;
         if (favoriteData.type == 'wallet') {
           route = Routes.transferScreen;
-        } else {
+          args = favoriteData.consId;
+        } else if(favoriteData.type == 'edl') {
           route = Routes.edlScreen;
+          args = {'provider': 'edl', 'consId': favoriteData.consId};
+        }else{
+          route = Routes.edlScreen;
+          args = {'provider': 'num papa', 'consId': favoriteData.consId};
         }
-        Navigator.of(context).pushNamed(route, arguments: favoriteData.consId);
+        Navigator.of(context).pushNamed(route, arguments: args);
       },
     );
   }

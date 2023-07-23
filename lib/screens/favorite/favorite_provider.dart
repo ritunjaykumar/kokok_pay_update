@@ -44,7 +44,7 @@ class FavoriteProvider extends BaseViewModel {
       RecentTxnData(
           name: 'Anouvong', image: ImagesFile.electricity, type: 'edl', id: '23456789876'),
       RecentTxnData(name: 'Boua', image: ImagesFile.electricity, type: 'edl', id: '643526456456'),
-      RecentTxnData(name: 'Bounkhong', image: ImagesFile.avatar, type: 'wallet', id: '45678256457'),
+      RecentTxnData(name: 'Bounkhong', image: ImagesFile.waterDrop, type: 'num papa', id: '45678256457'),
       RecentTxnData(
           name: 'Kouprasith Abhay', image: ImagesFile.avatar, type: 'wallet', id: '835635645'),
       RecentTxnData(
@@ -53,7 +53,7 @@ class FavoriteProvider extends BaseViewModel {
           type: 'wallet',
           id: '84565326545'),
       RecentTxnData(
-          name: 'General Cheng', image: ImagesFile.waterDrop, type: 'edl', id: '25645645666345'),
+          name: 'General Cheng', image: ImagesFile.avatar, type: 'edl', id: '25645645666345'),
     ];
   }
 
@@ -64,8 +64,9 @@ class FavoriteProvider extends BaseViewModel {
       FavoriteData(name: 'Kouprasith Abhay', type: 'wallet', consId: '45678256457'),
       FavoriteData(name: 'Alexandra Bounouei', type: 'wallet', consId: '835635645'),
       FavoriteData(name: 'General Cheng', type: 'edl', consId: '84565326545'),
+      FavoriteData(name: 'General Cheng', type: 'num papa', consId: '84565326545'),
       FavoriteData(name: 'Boua', type: 'edl', consId: '25645645666345'),
-      FavoriteData(name: 'Anuson', type: 'wallet', consId: '246547485'),
+      FavoriteData(name: 'Anuson', type: 'num papa', consId: '246547485'),
       FavoriteData(name: 'Deesabun', type: 'wallet', consId: '83563534'),
       FavoriteData(name: 'Atsawin', type: 'edl', consId: '5652654365'),
       FavoriteData(name: 'Lawan', type: 'wallet', consId: '84653665463456'),

@@ -65,4 +65,7 @@ class UtilLogo {
   static const String nampapa = '${_utilLogo}nampapa.png';
   static const String nampapaBanner = '${_utilLogo}nampapa_banner.png';
   static const String unitel = '${_utilLogo}unitel.png';
+  static const String insurance = '${_utilLogo}insurance.png';
+  static const String leasing = '${_utilLogo}leasing.png';
+  static const String tax = '${_utilLogo}tax.png';
 }
