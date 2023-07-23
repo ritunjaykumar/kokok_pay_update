@@ -56,6 +56,7 @@ class Routes {
   static const String resultEdlScreen = 'resultEdlScreen';
   static const String supportScreen = 'supportScreen';
   static const String favoriteScreen = 'favoriteScreen';
+  static const String topupScreen = 'favoriteScreen';
 }
 
 class RouteResource {

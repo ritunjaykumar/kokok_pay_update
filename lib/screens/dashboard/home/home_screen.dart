@@ -4,6 +4,7 @@ import 'package:kokok_pay/resources/routes_manager.dart';
 import 'package:kokok_pay/screens/dashboard/home/home_provider.dart';
 import 'package:kokok_pay/screens/dashboard/more/more_provider.dart';
 import 'package:kokok_pay/screens/dashboard/more/more_screen.dart';
+import 'package:kokok_pay/screens/widgets/widget/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -56,6 +57,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
             children: [
               // _topPartWidget(),
               _cardUi(),
+
               ///
               // const MoreScreen(),
               Expanded(child: _bottomPartWidget()),
@@ -85,67 +87,6 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
     );
   }
 
-  Widget _topPartWidget() {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // const SizedBox(height: 20),
-          Row(
-            children: [
-              const SizedBox(width: 10),
-              Text(
-                'Hello  Mr. Inpone',
-                style: textTheme.titleMedium?.copyWith(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          Consumer<HomeProvider>(
-            builder: (ctx, homeProvider, child) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    homeProvider.isAmountHidden ? '₭ ${homeProvider.amount}' : 'xxxxxxxxx',
-                    style: textTheme.titleLarge?.copyWith(
-                      color: colorScheme.onPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: homeProvider.amountHiddenToggle,
-                        icon: Icon(
-                          homeProvider.isAmountHidden ? Icons.visibility_off : Icons.visibility,
-                          color: Colors.white,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.refresh,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              );
-            },
-          ),
-          const SizedBox(height: 6),
-        ],
-      ),
-    );
-  }
 
   Widget _bottomPartWidget() {
     final colorScheme = Theme.of(context).colorScheme;
@@ -272,6 +213,10 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
     Widget getCardUiItem(MenuItemData menuItemData) {
       return InkWell(
         onTap: () {
+          if (menuItemData.path! == 'billPayment') {
+            _showBillPaymentOption();
+            return;
+          }
           Navigator.of(context).pushNamed(menuItemData.path!);
         },
         borderRadius: BorderRadius.circular(12),
@@ -325,7 +270,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
                 children: [
                   Text('Mr. Inpone', style: textTheme.titleMedium),
                   Text(
-                    '₭ 723.647.236.4',
+                    '₭ 7236474',
                     style: textTheme.bodyLarge?.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -345,7 +290,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 getBottomCardUi('Favorite', Icons.favorite, Routes.favoriteScreen),
-                getBottomCardUi('Support', Icons.support_agent,Routes.supportScreen),
+                getBottomCardUi('Support', Icons.support_agent, Routes.supportScreen),
               ],
             )
           ],
@@ -353,4 +298,111 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
       ),
     );
   }
+
+  void _showBillPaymentOption() {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    Widget getItem(String title, String route, String image ,[Object? args]) {
+      return ListTile(
+        leading: CircleAvatar(child: Image.asset(image,height: 32, width: 32,)),
+        title: Text(title),
+        onTap: () {
+          Navigator.of(context).pushReplacementNamed(route, arguments: args);
+        },
+        trailing: const Icon(
+          Icons.arrow_forward_ios_sharp,
+          size: 18,
+        ),
+        titleTextStyle: textTheme.titleMedium,
+      );
+    }
+
+    showDialog(
+        context: context,
+        builder: (ctx) {
+          return Dialog(
+            insetPadding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const DialogAppbar(title: 'Select Option'),
+                getItem('Top up', '', UtilLogo.unitel),
+                getItem('Edl', Routes.edlScreen, UtilLogo.edl, {'provider': 'edl'}),
+                getItem('Nampapa', Routes.edlScreen, UtilLogo.nampapa, {'provider': 'nampapa'}),
+                getItem('Insurance', Routes.edlScreen, UtilLogo.nampapa),
+                getItem('Leasing', Routes.edlScreen, UtilLogo.nampapa),
+                getItem('Tax', '', UtilLogo.nampapa),
+                const SizedBox(height: 18),
+              ],
+            ),
+          );
+        });
+  }
 }
+
+/////////////////////////////////
+/*
+
+class HorizontalPopupMenu<T> extends PopupMenuEntry<T>{
+  const HorizontalPopupMenu({super.key, required this.menuHeight, required this.child});
+
+  final double menuHeight;
+  final Widget child;
+
+
+
+
+  @override
+  State<StatefulWidget> createState() =>_PopupMenuWidgetState();
+
+  @override
+  double get height => menuHeight;
+
+  @override
+  bool represents(T? value) {
+    // TODO: implement represents
+    throw UnimplementedError();
+  }
+
+}
+
+class _PopupMenuWidgetState extends State<PopupMenuWidget> {
+  @override
+  Widget build(BuildContext context) => widget.child;
+}
+
+
+
+
+
+
+
+
+
+class PopupMenuWidget<T> extends PopupMenuEntry<T> {
+  const PopupMenuWidget({ required Key key, required this.height, required this.child }) : super(key: key);
+
+  @override
+  final Widget child;
+
+  @override
+  final double height;
+
+  @override
+  bool get enabled => false;
+
+  @override
+  PopupMenuWidgetState createState() => PopupMenuWidgetState();
+
+  @override
+  bool represents(T? value) {
+    // TODO: implement represents
+    throw UnimplementedError();
+  }
+}
+
+class PopupMenuWidgetState extends State<PopupMenuWidget> {
+  @override
+  Widget build(BuildContext context) => widget.child;
+}*/

@@ -119,16 +119,19 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     const double width = 60;
+    dynamic args;
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
         String route;
         if (recentTxnData.type == 'wallet') {
           route = Routes.transferScreen;
+          args = recentTxnData.id;
         } else {
           route = Routes.edlScreen;
+          args = {'provider': 'edl', 'consId': recentTxnData.id};
         }
-        Navigator.of(context).pushNamed(route, arguments: recentTxnData.id);
+        Navigator.of(context).pushNamed(route, arguments: args);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -194,7 +197,11 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
                 favoriteData.selected = checked!;
                 setState(() {});
               })
-          : const Icon(Icons.arrow_forward_ios_sharp, size: 18,),/*IconButton(
+          : const Icon(
+              Icons.arrow_forward_ios_sharp,
+              size: 18,
+            ),
+      /*IconButton(
               onPressed: () {},
               icon: const Icon(Icons.payments),
             ),*/

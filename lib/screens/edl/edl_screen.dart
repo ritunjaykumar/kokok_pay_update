@@ -14,14 +14,19 @@ class EdlScreen extends StatefulWidget {
 
 class _EdlScreenState extends State<EdlScreen> {
   bool isFirstTime = true;
-  late String? consId;
+  late String screenType;
+  String? consId;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (isFirstTime) {
-      consId = ModalRoute.of(context)?.settings.arguments as String?;
+      Map<String, String> routeData =
+          ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+      screenType = routeData['provider'] ?? '';
+      consId = routeData['consId'];
       print('consId: $consId');
+      print('screenType: $screenType');
       isFirstTime = false;
     }
   }
@@ -29,7 +34,7 @@ class _EdlScreenState extends State<EdlScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<EdlProvider>(
-      create: (ctx) => EdlProvider(context, consId)..init(),
+      create: (ctx) => EdlProvider(context, consId, screenType)..init(),
       child: const _EdlScreenMain(),
     );
   }
@@ -85,11 +90,12 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final screeType = context.read<EdlProvider>().screenType;
     return Scaffold(
-      backgroundColor: color,
+      backgroundColor: screeType == 'edl' ? color : colorScheme.background,
       appBar: AppBar(
-        title: const Text('EDL'),
-        backgroundColor: color,
+        title: Text(screeType == 'edl' ? 'EDL' : 'Nam Papa'),
+        backgroundColor: screeType == 'edl' ? color : colorScheme.primary,
         systemOverlayStyle: const SystemUiOverlayStyle(
           systemNavigationBarColor: Colors.white,
         ),
@@ -97,7 +103,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
       body: Column(
         children: [
           Image.asset(
-            ImagesFile.edlBanner,
+            screeType == 'edl' ? ImagesFile.edlBanner : UtilLogo.nampapaBanner,
             height: 150,
             width: double.infinity,
             fit: BoxFit.fill,
@@ -117,7 +123,8 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text('EDL Payment', style: textTheme.titleMedium),
+                    Text(screeType == 'edl' ? 'EDL Payment' : 'Nam Papa Payment',
+                        style: textTheme.titleMedium),
                     Form(
                       key: _formKey,
                       child: Padding(
@@ -125,28 +132,30 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            if (screeType == 'edl')
                             const Text('Select Province'),
-                            DropdownButtonFormField(
-                              value: 'Test 1 Province',
-                              items: ['Test 1 Province', 'Test 2 Province']
-                                  .map(
-                                    (e) => DropdownMenuItem<String>(
-                                      value: e,
-                                      child: Text(e),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: search ? null : (String? item) {},
-                              isExpanded: true,
-                              onSaved: (zone) {},
-                            ),
+                            if (screeType == 'edl')
+                              DropdownButtonFormField(
+                                value: 'Test 1 Province',
+                                items: ['Test 1 Province', 'Test 2 Province']
+                                    .map(
+                                      (e) => DropdownMenuItem<String>(
+                                        value: e,
+                                        child: Text(e),
+                                      ),
+                                    )
+                                    .toList(),
+                                onChanged: search ? null : (String? item) {},
+                                isExpanded: true,
+                                onSaved: (zone) {},
+                              ),
                             const SizedBox(height: 12),
-                            const Text('Bill Number'),
+                            const Text('Consumer Id'),
                             TextFormField(
                               controller: _consIdController,
                               readOnly: search,
                               decoration: InputDecoration(
-                                hintText: 'Please Enter Bill Number',
+                                hintText: 'Please Enter Consumer Id',
                                 suffixIcon: search
                                     ? null
                                     : IconButton(
@@ -213,7 +222,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                                 style: textTheme.titleMedium?.copyWith(color: colorScheme.primary),
                               ),
                               const SizedBox(height: 8),
-                              _billInfoWidget('Bill Number', billNumber),
+                              _billInfoWidget('Consumer Id', billNumber),
                               _billInfoWidget('Due Amount', '₭ 126335'),
                               _billInfoWidget('Due Month', 'June'),
                               _billInfoWidget('Year', '2023'),

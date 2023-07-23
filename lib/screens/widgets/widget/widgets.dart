@@ -4,13 +4,13 @@ class DialogAppbar extends StatelessWidget {
   const DialogAppbar({
     super.key,
     required this.title,
-    required this.icon,
-    required this.callback,
+    this.icon,
+    this.callback,
   });
 
   final String title;
-  final IconData icon;
-  final VoidCallback callback;
+  final IconData? icon;
+  final VoidCallback? callback;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class DialogAppbar extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: callback,
+            onPressed: callback ?? () => Navigator.of(context).pop(),
             icon: Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
@@ -47,7 +47,7 @@ class DialogAppbar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(24),
               ),
               child: Icon(
-                icon,
+                icon ?? Icons.close,
                 color: colorScheme.primary,
               ),
             ),

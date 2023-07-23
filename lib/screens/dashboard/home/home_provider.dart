@@ -26,28 +26,36 @@ class HomeProvider extends BaseViewModel {
 
   void _transactionsData() {
     _transactionData.addAll([
-      TransactionData('txnId', 56832, '₭', 'Kouprasith Abhay', 'receive', '2023-05-12 12:23 am'),
-      TransactionData('txnId', 56765, '₭', 'Alexandra Bounxouei', 'receive', '2023-05-13 12:23 am'),
+      TransactionData('txnId', 56832, '₭', 'Kouprasith Abhay', 'received', '2023-05-12 12:23 am'),
+      TransactionData('txnId', 56765, '₭', 'Alexandra Bounxouei', 'received', '2023-05-13 12:23 am'),
       TransactionData('txnId', 12379, '₭', 'Anouvong', 'sent', '2023-04-10 12:23 am'),
-      TransactionData('txnId', 71453, '₭', 'Boua', 'receive', '2023-03-15 12:23 am'),
+      TransactionData('txnId', 71453, '₭', 'Boua', 'received', '2023-03-15 12:23 am'),
       TransactionData('txnId', 9835, '₭', 'Bounkhong', 'sent', '2023-05-13 12:23 am'),
       TransactionData('txnId', 3674, '₭', 'Bouasone Bouphavanh.', 'sent', '2023-05-17 12:23 am'),
       TransactionData('txnId', 5672, '₭', 'Laasaenthai Bouvanaat', 'sent', '2023-05-19 12:23 am'),
-      TransactionData('txnId', 7865, '₭', 'General Cheng', 'receive', '2023-06-10 12:23 am'),
+      TransactionData('txnId', 7865, '₭', 'General Cheng', 'received', '2023-06-10 12:23 am'),
       TransactionData('txnId', 98087, '₭', 'Laasaenthai Bouvanaat', 'sent', '2023-05-16 12:23 am'),
-      TransactionData('txnId', 45309, '₭', 'Bouasone Bouphavanh', 'receive', '2023-04-26 12:23 am'),
+      TransactionData('txnId', 45309, '₭', 'Bouasone Bouphavanh', 'received', '2023-04-26 12:23 am'),
       TransactionData('txnId', 5634, '₭', 'Anouvong', 'sent', '2023-04-02 12:23 am'),
-      TransactionData('txnId', 71453, '₭', 'Boua', 'receive', '2023-03-15 12:23 am'),
+      TransactionData('txnId', 71453, '₭', 'Boua', 'received', '2023-03-15 12:23 am'),
       TransactionData('txnId', 9835, '₭', 'Bounkhong', 'sent', '2023-05-13 12:23 am'),
     ]);
   }
+
+  /*void menuHandler(String path){
+    if(path=='billPayment'){
+
+      return;
+    }
+    Navigator.of(context).pushNamed(path);
+  }*/
 
   void _initMenuItems() {
     _menuItems = <MenuItemData>[
       MenuItemData(title: 'Transfer', icon: Icons.send, path: Routes.transferScreen),
       MenuItemData(title: 'Wallet', icon: Icons.wallet, path: Routes.walletScreen),
       MenuItemData(title: 'My Cards', icon: Icons.credit_card, path: Routes.cardScreen),
-      MenuItemData(title: 'Bill Payment', icon: CustomIcon.bill, path: Routes.edlScreen),
+      MenuItemData(title: 'Bill Payment', icon: CustomIcon.bill, path: 'billPayment'),
     ];
   }
 

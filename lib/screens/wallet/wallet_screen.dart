@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kokok_pay/resources/asset_manager.dart';
-import 'package:kokok_pay/screens/dashboard/qr/my_qr_provider.dart';
 import 'package:kokok_pay/screens/wallet/wallet_provider.dart';
 import 'package:kokok_pay/screens/widgets/widget/widgets.dart';
-import 'package:kokok_pay/service/toast/toast_data.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -34,13 +32,13 @@ class _WalletScreenMain extends StatefulWidget {
 }
 
 class _WalletScreenMainState extends State<_WalletScreenMain> {
-  bool addMoneyPopup = false;
+  /*bool addMoneyPopup = false;
 
   void addMoneyPopupToggle(bool popup) {
     if (addMoneyPopup == popup) return;
     addMoneyPopup = popup;
     setState(() {});
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +94,8 @@ class _WalletScreenMainState extends State<_WalletScreenMain> {
                       height: 34,
                       child: OutlinedButton.icon(
                         onPressed: () {
-                          addMoneyPopupToggle(true);
+                          // addMoneyPopupToggle(true);
+                          _popupMenu();
                         },
                         style: ButtonStyle(
                           foregroundColor: MaterialStatePropertyAll<Color>(colorScheme.onPrimary),
@@ -148,23 +147,50 @@ class _WalletScreenMainState extends State<_WalletScreenMain> {
               ),
             ],
           ),
-          Positioned(
-            top: 50,
-            left: 0,
-            right: 0,
-            child: addMoneyPopup
-                ? Align(
-                    alignment: Alignment.topCenter,
-                    child: _popupMenu(),
-                  )
-                : const SizedBox(),
-          )
         ],
       ),
     );
   }
 
-  Widget _popupMenu() {
+  void _popupMenu() {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    Widget getItem(String title, VoidCallback callback){
+      return ListTile(
+        title:  Text(title),
+        onTap: callback,
+        trailing: const Icon(Icons.arrow_forward_ios_sharp, size: 18,),
+        titleTextStyle: textTheme.titleMedium,
+      );
+    }
+
+
+
+    showDialog(
+        context: context,
+        builder: (ctx) {
+          return Dialog(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const DialogAppbar(title: 'Select Option'),
+                getItem('Lao QR',  (){
+                  Navigator.of(context).pop();
+                  _showQrDialog();
+                }),
+                getItem('ATM Card',  (){
+                  Navigator.of(context).pop();
+                  _showBottomNavigation();
+                }),
+                const SizedBox(height: 18),
+              ],
+            ),
+          );
+        });
+  }
+
+  /*Widget _popupMenu() {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     return Container(
@@ -197,7 +223,7 @@ class _WalletScreenMainState extends State<_WalletScreenMain> {
         ],
       ),
     );
-  }
+  }*/
 
   Widget _getListTile(MiniStatementData msd) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -294,7 +320,7 @@ class _WalletScreenMainState extends State<_WalletScreenMain> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Scan Qr to recharge wallet', style: textTheme.titleMedium),
+                  Text('Scan QR to recharge wallet', style: textTheme.titleMedium),
                   const SizedBox(height: 10),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
@@ -559,3 +585,16 @@ class CardNumberFormatter extends TextInputFormatter {
     return newValue.copyWith(text: text);
   }
 }
+/*
+*
+*   Positioned(
+            top: 50,
+            left: 0,
+            right: 0,
+            child: addMoneyPopup
+                ? Align(
+                    alignment: Alignment.topCenter,
+                    child: _popupMenu(),
+                  )
+                : const SizedBox(),
+          ),*/
