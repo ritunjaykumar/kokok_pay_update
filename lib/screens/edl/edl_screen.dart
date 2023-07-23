@@ -49,7 +49,8 @@ class _EdlScreenMain extends StatefulWidget {
 }
 
 class _EdlScreenMainState extends State<_EdlScreenMain> {
-  final Color color = const Color(0xFF74b6d9);
+  final Color edlColor = const Color(0xFF74b6d9);
+  final Color namPapaColor = const Color(0xFFacd6d2);
 
   // final Color color = const Color(0xff55b5e1);
   final GlobalKey<FormState> _formKey = GlobalKey();
@@ -92,10 +93,10 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
     final textTheme = Theme.of(context).textTheme;
     final screeType = context.read<EdlProvider>().screenType;
     return Scaffold(
-      backgroundColor: screeType == 'edl' ? color : colorScheme.background,
+      backgroundColor: screeType == 'edl' ? edlColor : namPapaColor,
       appBar: AppBar(
         title: Text(screeType == 'edl' ? 'EDL' : 'Nam Papa'),
-        backgroundColor: screeType == 'edl' ? color : colorScheme.primary,
+        backgroundColor: screeType == 'edl' ? edlColor : namPapaColor,
         systemOverlayStyle: const SystemUiOverlayStyle(
           systemNavigationBarColor: Colors.white,
         ),
@@ -132,8 +133,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (screeType == 'edl')
-                            const Text('Select Province'),
+                            if (screeType == 'edl') const Text('Select Province'),
                             if (screeType == 'edl')
                               DropdownButtonFormField(
                                 value: 'Test 1 Province',
@@ -239,7 +239,10 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).pushReplacementNamed(Routes.resultEdlScreen);
+                              Navigator.of(context).pushReplacementNamed(
+                                Routes.resultEdlScreen,
+                                arguments: screeType,
+                              );
                             },
                             child: const Text('Pay Bill'),
                           ),

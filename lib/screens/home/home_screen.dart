@@ -120,7 +120,7 @@ class _BottomMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _BottomMenuItem(
-            title: 'My Qr',
+            title: 'My QR',
             image: ImagesFile.homeQr,
             callback: context.read<HomeProvider>().routeQrScreen,
           ),

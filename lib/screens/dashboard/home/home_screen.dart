@@ -327,7 +327,7 @@ class _HomeScreenMainState extends State<_HomeScreenMain> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const DialogAppbar(title: 'Select Option'),
-                getItem('Top up', '', UtilLogo.unitel),
+                getItem('Top up', Routes.topupScreen, UtilLogo.unitel),
                 getItem('Edl', Routes.edlScreen, UtilLogo.edl, {'provider': 'edl'}),
                 getItem('Nampapa', Routes.edlScreen, UtilLogo.nampapa, {'provider': 'nampapa'}),
                 getItem('Insurance', Routes.edlScreen, UtilLogo.nampapa),

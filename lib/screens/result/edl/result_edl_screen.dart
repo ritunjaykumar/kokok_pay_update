@@ -19,10 +19,23 @@ class ResultEdlScreen extends StatefulWidget {
 }
 
 class _ResultEdlScreenState extends State<ResultEdlScreen> {
+  bool isFirstTime = true;
+  late String screenType;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (isFirstTime) {
+      screenType = ModalRoute.of(context)?.settings.arguments as String;
+      print('screenType: $screenType');
+      isFirstTime = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ResultEdlProvider>(
-      create: (ctx) => ResultEdlProvider(context)..init(),
+      create: (ctx) => ResultEdlProvider(context,screenType)..init(),
       child: const _ResultEdlScreenMain(),
     );
   }
@@ -79,9 +92,10 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final screenType = context.read<ResultEdlProvider>().screenType;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('EDL Transaction Result'),
+        title: Text(screenType == 'edl' ? 'EDL Transaction' : 'Nam Papa Transaction'),
         actions: [
           IconButton(onPressed: shareQr, icon: const Icon(Icons.share)),
           IconButton(
@@ -112,7 +126,7 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
                 child: Column(
                   children: [
                     Text(
-                      'EDL Bill Payment Success',
+                      screenType == 'edl' ? 'EDL Bill Payment Success' : 'Nam Papa Payment Success',
                       style: textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w600,
                         color: Colors.green,
@@ -152,15 +166,17 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
                           children: [
                             _getTileList('Transaction fee', '₭ 10.0'),
                             _getTileList('Transaction Id', '1238763492347'),
-                            _getTileList('Bill Number', '873648728472384'),
+                            _getTileList('Consumer Id', '873648728472384'),
                             _getTileList('Sender', 'Mr. Inpone'),
                             _getTileList('Receiver', 'EDL'),
                             _getTileList('Txn Date', '2023-06-20'),
                             _getTileList('Txn Time', '12:34:97 PM'),
                             _getTileList('Due Month', 'June'),
                             _getTileList('Due Year', '2023'),
-                            _getTileList('Description', 'EDL Payment'),
-                            _getTileList('Transaction type', 'Bill Payment'),
+                            _getTileList('Description',
+                                screenType == 'edl' ? 'EDL Payment' : 'Nam papa Payment'),
+                            _getTileList(
+                                'Transaction type', screenType == 'edl' ? 'EDL' : 'Nam Papa'),
                           ],
                         ),
                       ),

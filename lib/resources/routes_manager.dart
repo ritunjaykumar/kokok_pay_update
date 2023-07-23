@@ -10,6 +10,7 @@ import 'package:kokok_pay/screens/result/transfer/result_transfer_screen.dart';
 import 'package:kokok_pay/screens/scanner/details/scanner_detail_screen.dart';
 import 'package:kokok_pay/screens/scanner/qr_scanner_screen.dart';
 import 'package:kokok_pay/screens/support/support_screen.dart';
+import 'package:kokok_pay/screens/topup/topup_screen.dart';
 import 'package:kokok_pay/screens/transfer/transfer_screen.dart';
 import 'package:kokok_pay/screens/wallet/wallet_screen.dart';
 
@@ -56,7 +57,7 @@ class Routes {
   static const String resultEdlScreen = 'resultEdlScreen';
   static const String supportScreen = 'supportScreen';
   static const String favoriteScreen = 'favoriteScreen';
-  static const String topupScreen = 'favoriteScreen';
+  static const String topupScreen = 'topupScreen';
 }
 
 class RouteResource {
@@ -105,12 +106,14 @@ class RouteResource {
         return MaterialPageRoute(builder: (_) => const TransferScreen());*/
       /*case Routes.edlScreen:
         return MaterialPageRoute(builder: (_) => const EdlScreen());*/
-      case Routes.resultEdlScreen:
-        return MaterialPageRoute(builder: (_) => const ResultEdlScreen());
+     /* case Routes.resultEdlScreen:
+        return MaterialPageRoute(builder: (_) => const ResultEdlScreen());*/
       case Routes.supportScreen:
         return MaterialPageRoute(builder: (_) => const SupportScreen());
       case Routes.favoriteScreen:
         return MaterialPageRoute(builder: (_) => const FavoriteScreen());
+      case Routes.topupScreen:
+        return MaterialPageRoute(builder: (_) => const TopupScreen());
       default:
         return MaterialPageRoute(builder: (_) => const UnknownScreen());
     }
@@ -127,6 +130,7 @@ class RouteResource {
       Routes.userDetailsScreen: (_) => const UserDetailsScreen(),
       Routes.edlScreen: (_) => const EdlScreen(),
       Routes.transferScreen: (_) => const TransferScreen(),
+      Routes.resultEdlScreen: (_) => const ResultEdlScreen(),
     };
   }
 }
