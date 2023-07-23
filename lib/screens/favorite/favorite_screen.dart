@@ -127,12 +127,12 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
         if (recentTxnData.type == 'wallet') {
           route = Routes.transferScreen;
           args = recentTxnData.id;
-        } else if(recentTxnData.type == 'edl') {
+        } else if(recentTxnData.type == 'EDL') {
           route = Routes.edlScreen;
           args = {'provider': 'edl', 'consId': recentTxnData.id};
         } else {
           route = Routes.edlScreen;
-          args = {'provider': 'num papa', 'consId': recentTxnData.id};
+          args = {'provider': 'Nampapa', 'consId': recentTxnData.id};
         }
         Navigator.of(context).pushNamed(route, arguments: args);
       },
@@ -179,9 +179,9 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
     IconData iconData() {
       if (favoriteData.type == 'wallet') {
         return Icons.wallet;
-      } else if (favoriteData.type == 'edl') {
+      } else if (favoriteData.type == 'EDL') {
         return Icons.electric_bolt_outlined;
-      } else if (favoriteData.type == 'num papa') {
+      } else if (favoriteData.type == 'Nampapa') {
         return Icons.water_drop;
       } else {
         return Icons.favorite;
@@ -209,12 +209,12 @@ class _FavoriteScreenMainState extends State<_FavoriteScreenMain> {
         if (favoriteData.type == 'wallet') {
           route = Routes.transferScreen;
           args = favoriteData.consId;
-        } else if(favoriteData.type == 'edl') {
+        } else if(favoriteData.type == 'EDL') {
           route = Routes.edlScreen;
           args = {'provider': 'edl', 'consId': favoriteData.consId};
         }else{
           route = Routes.edlScreen;
-          args = {'provider': 'num papa', 'consId': favoriteData.consId};
+          args = {'provider': 'Nampapa', 'consId': favoriteData.consId};
         }
         Navigator.of(context).pushNamed(route, arguments: args);
       },

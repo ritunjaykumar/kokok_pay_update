@@ -95,7 +95,7 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
     final screenType = context.read<ResultEdlProvider>().screenType;
     return Scaffold(
       appBar: AppBar(
-        title: Text(screenType == 'edl' ? 'EDL Transaction' : 'Nam Papa Transaction'),
+        title: Text(screenType == 'edl' ? 'EDL Transaction' : 'Nampapa Transaction'),
         actions: [
           IconButton(onPressed: shareQr, icon: const Icon(Icons.share)),
           IconButton(
@@ -174,9 +174,9 @@ class _ResultEdlScreenMainState extends State<_ResultEdlScreenMain> {
                             _getTileList('Due Month', 'June'),
                             _getTileList('Due Year', '2023'),
                             _getTileList('Description',
-                                screenType == 'edl' ? 'EDL Payment' : 'Nam papa Payment'),
+                                screenType == 'edl' ? 'EDL Payment' : 'Nampapa Payment'),
                             _getTileList(
-                                'Transaction type', screenType == 'edl' ? 'EDL' : 'Nam Papa'),
+                                'Transaction type', screenType == 'edl' ? 'EDL' : 'Nampapa'),
                           ],
                         ),
                       ),

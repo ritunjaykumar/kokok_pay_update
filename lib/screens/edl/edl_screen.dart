@@ -96,7 +96,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
     return Scaffold(
       backgroundColor: screeType == 'edl' ? edlColor : namPapaColor,
       appBar: AppBar(
-        title: Text(screeType == 'edl' ? 'EDL' : 'Nam Papa'),
+        title: Text(screeType == 'edl' ? 'EDL' : 'Nampapa'),
         backgroundColor: screeType == 'edl' ? edlColor : namPapaColor,
         systemOverlayStyle: const SystemUiOverlayStyle(
           systemNavigationBarColor: Colors.white,
@@ -125,7 +125,7 @@ class _EdlScreenMainState extends State<_EdlScreenMain> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text(screeType == 'edl' ? 'EDL Payment' : 'Nam Papa Payment',
+                    Text(screeType == 'edl' ? 'EDL Payment' : 'Nampapa Payment',
                         style: textTheme.titleMedium),
                     Form(
                       key: _formKey,
